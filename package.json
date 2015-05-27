@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,10 +18,14 @@
   },
   "homepage": "https://github.com/purifycss/purify-app",
   "dependencies": {
+    "http-proxy": "^1.11.1",
     "jsx-loader": "^0.13.2",
     "mcfly": "0.0.10",
     "node-libs-browser": "^0.5.2",
     "react": "^0.13.3",
     "webpack": "^1.9.10"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^1.9.0"
   }
 }
