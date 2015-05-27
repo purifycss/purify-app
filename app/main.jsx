@@ -1,6 +1,3 @@
 var React = require('react');
-var AppComponent = require('./App.js');
-
+var AppComponent = require('./AppComponent.jsx');
 React.render(<AppComponent/>, document.body);
-
-//routing stuff goes here
