@@ -26,24 +26,26 @@ module.exports = {
     // localhost:3000/build. That makes proxying easier to handle
     publicPath: '/build/'
   },
-  loaders: [
+  module: {
+    loaders: [
 
-    // I highly recommend using the babel-loader as it gives you
-    // ES6/7 syntax and JSX transpiling out of the box
-    {
-      test: /\.js$/,
-      loader: 'babel',
-      exclude: [nodeModulesPath]
-    },
+      // I highly recommend using the babel-loader as it gives you
+      // ES6/7 syntax and JSX transpiling out of the box
+      {
+        test: /\.js$/,
+        loader: 'babel',
+        exclude: [nodeModulesPath]
+      },
 
-    // Let us also add the style-loader and css-loader, which you can
-    // expand with less-loader etc.
-    {
-      test: /\.css$/,
-      loader: 'style!css'
-    }
+      // Let us also add the style-loader and css-loader, which you can
+      // expand with less-loader etc.
+      {
+        test: /\.css$/,
+        loader: 'style!css'
+      }
 
-  ],
-plugins: [new Webpack.HotModuleReplacementPlugin()]
+    ],
+    plugins: [new Webpack.HotModuleReplacementPlugin()]
+  }
 
 };

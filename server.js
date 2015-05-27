@@ -6,9 +6,11 @@ var proxy = httpProxy.createProxyServer();
 var app = express();
 
 var isProduction = process.env.NODE_ENV === 'production';
+
 var port = isProduction ? 8080 : 3001;
 var publicPath = path.resolve(__dirname, 'public');
-console.log('PUBLIC PATH',publicPath);
+
+console.log(publicPath);
 
 app.use(express.static(publicPath));
 
@@ -21,7 +23,7 @@ if (!isProduction) {
   var bundle = require('./server/bundle.js'); 
   bundle();
 
-  // Any requests to localhost:3000/build is proxied
+  // Any requests to localhost:3001/build is proxied
   // to webpack-dev-server
   app.all('/build/*', function (req, res) {
     proxy.web(req, res, {
