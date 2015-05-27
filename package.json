@@ -19,6 +19,7 @@
   "homepage": "https://github.com/schoenflies/purify-app",
   "dependencies": {
     "jsx-loader": "^0.13.2",
+    "koa": "^0.21.0",
     "node-libs-browser": "^0.5.2",
     "react": "^0.13.3",
     "webpack": "^1.9.10"
