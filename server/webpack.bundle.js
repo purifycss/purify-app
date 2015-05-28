@@ -1,13 +1,16 @@
+/*
+@author Christian Alfoni
+@link 
+http://www.christianalfoni.com/articles/2015_04_19_The-ultimate-webpack-setup
+ */
+
 var Webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var webpackConfig = require('./../webpack.config.js');
-var path = require('path');
-var fs = require('fs');
-var mainPath = path.resolve(__dirname, '..', 'app', 'main.jsx');
 
 module.exports = function() {
 
-  // First we fire up Webpack an pass in the configuration we
+  // First we fire up Webpack and pass in the configuration we
   // created
   var bundleStart = null;
   var compiler = Webpack(webpackConfig);
