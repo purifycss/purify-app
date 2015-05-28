@@ -20438,7 +20438,7 @@
 	module.exports = React.createClass({displayName: "module.exports",
 	  render: function () {
 	    return (
-	      React.createElement("h1", null, "Hello world!")
+	      React.createElement("h1", null, "Hello world again!")
 	    );
 	  }
 	});
