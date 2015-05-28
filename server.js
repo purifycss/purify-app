@@ -1,11 +1,11 @@
 // Used to proxy webpack bundles from webpack - dev - server to localhost
-var httpProxy = require('http-proxy');
-var proxy = httpProxy.createProxyServer();
-var bundle = require('./server/webpack.bundle.js')
+var proxy = require('koa-proxy');
+var bundle = require('./server/webpack.bundle.js');
+var route = require('koa-route');
+var common = require('koa-common');
 
 var koa = require('koa');
 var app = koa();
-var common = require('koa-common');
 
 var port = 3000;
 
@@ -13,18 +13,17 @@ var port = 3000;
 app.use(common.logger('dev'));
 
 // enable static middleware
-app.use(common.static(__dirname + '/build'));
+app.use(common.static(__dirname));
 
 //start webpack bundling process
 bundle();
 
-// Any requests to localhost:3000/build is proxied
-// to webpack-dev-server
-// app.all('/build/*', function(req, res) {
-//   proxy.web(req, res, {
-//     target: 'http://localhost:3000'
-//   });
-// });
+//route localhost:3000 request to localhost:8080 to fetch
+//latest bundle
+app.use(route.get('/build/bundle.js', proxy({
+  url: 'http://localhost:8080/build/bundle.js'
+})));
+
 
 var server = app.listen(port, function() {
   console.log('Listening on port %d', server.address().port);
