@@ -2,7 +2,7 @@ var Webpack = require('webpack');
 var path = require('path');
 
 var buildPath = path.resolve(__dirname, 'build');
-var mainPath = path.resolve(__dirname, 'app', 'main.jsx');
+var mainPath = path.resolve(__dirname, 'app', 'App.jsx');
 
 module.exports = {
   entry: mainPath,
@@ -10,7 +10,7 @@ module.exports = {
   output: {
     path: buildPath,
     filename: 'bundle.js',
-    publicPath: "http://localhost:8080/build/"
+    publicPath: "/build"
   },
   module: {
     loaders: [{
