@@ -1,34 +1,36 @@
 /*
-@author Christian Alfoni
-@link 
-http://www.christianalfoni.com/articles/2015_04_19_The-ultimate-webpack-setup
+@Webpack
+@WebpackDevServer
+@config
+
+TODO
  */
 
-var Webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var webpackConfig = require('./../webpack.config.js');
+import Webpack from 'webpack';
+import WebpackDevServer from 'webpack-dev-server';
+import config from './../webpack.config';
 
-module.exports = function() {
+export default () => {
 
   // First we fire up Webpack and pass in the configuration we
   // created
-  var bundleStart = null;
-  var compiler = Webpack(webpackConfig);
+  let start = null;
+  let compiler = Webpack(config);
 
   // We give notice in the terminal when it starts bundling and
   // set the time it started
   compiler.plugin('compile', function() {
     console.log('Bundling...');
-    bundleStart = Date.now();
+    start = Date.now();
   });
 
   // We also give notice when it is done compiling, including the
   // time it took. Nice to have
   compiler.plugin('done', function() {
-    console.log('Bundled in ' + (Date.now() - bundleStart) + 'ms!');
+    console.log('Bundled in ' + (Date.now() - start) + 'ms!');
   });
 
-  var bundler = new WebpackDevServer(compiler, {
+  let bundler = new WebpackDevServer(compiler, {
 
     // We need to tell Webpack to serve our bundled application
     // from the build path. When proxying:

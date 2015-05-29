@@ -1,11 +1,15 @@
-var React = require('react');
+import React from 'react';
 
-module.exports = React.createClass({
-  render: function () {
+const UrlInput = React.createClass({
+  
+  render() {
     return (
       <div>
-        <input/>
+        <input type="text" ref="url"></input>
+        <button onClick={this.purifyUrl}>Purify</button>
       </div>
     );
   }
 });
+
+export default UrlInput;

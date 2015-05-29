@@ -1,8 +1,8 @@
-var React = require('react');
-var UrlInput = require('../components/urlInput.jsx');
+import React from 'react';
+import UrlInput from '../components/urlInput.jsx';
 
-module.exports = React.createClass({
-  render: function () {
+const Landing = React.createClass({
+  render () {
     return (
       <div>
         <p>This is the landing page</p>
@@ -11,3 +11,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+export default Landing;

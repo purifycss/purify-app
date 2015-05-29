@@ -1,26 +1,27 @@
 var Webpack = require('webpack');
 var path = require('path');
 
-var buildPath = path.resolve(__dirname, 'build');
-var mainPath = path.resolve(__dirname, 'app', 'App.jsx');
+var build = path.resolve(__dirname, 'build');
+var entry = path.resolve(__dirname,'app', 'App.jsx');
+
 
 module.exports = {
-  entry: mainPath,
+  entry: entry,
 
   output: {
-    path: buildPath,
+    path: build,
     filename: 'bundle.js',
     publicPath: "/build"
   },
   module: {
     loaders: [{
-      test: /\.js?$/,
+      test: /\.(js|jsx)/,
       exclude: /(node_modules|bower_components)/,
       loader: 'babel'
-    }, {
-      test: /\.jsx$/,
-      loader: 'jsx-loader'
-    }],
+      }],
+    resolve: {
+      extensions: ["", ".js", ".jsx"],
+    },
     plugins: [new Webpack.HotModuleReplacementPlugin()]
   }
 };
