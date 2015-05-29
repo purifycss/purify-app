@@ -2,8 +2,7 @@ var Webpack = require('webpack');
 var path = require('path');
 
 var build = path.resolve(__dirname, 'build');
-var entry = path.resolve(__dirname,'app', 'App.jsx');
-
+var entry = path.resolve(__dirname, 'app', 'App.jsx');
 
 module.exports = {
   entry: entry,
@@ -18,7 +17,7 @@ module.exports = {
       test: /\.(js|jsx)/,
       exclude: /(node_modules|bower_components)/,
       loader: 'babel'
-      }],
+    }],
     resolve: {
       extensions: ["", ".js", ".jsx"],
     },
