@@ -50,8 +50,8 @@ export default () => {
 
   // We fire up the development server and give notice in the terminal
   // that we are starting the initial bundle
-  bundler.listen(8080, 'localhost', function() {
-    console.log('Bundling project on localhost:8080, please wait...');
+  bundler.listen(8090, 'localhost', function() {
+    console.log('Bundling project on localhost:8090, please wait...');
   });
 
 };
