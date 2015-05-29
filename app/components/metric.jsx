@@ -1,7 +1,7 @@
-var React = require('react');
+import React from 'react';
 
-module.exports = React.createClass({
-  render: function () {
+const Metric = React.createClass({
+  render() {
     return (
       <div>
         <p>Metrics</p>
@@ -9,3 +9,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+export default Metric;

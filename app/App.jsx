@@ -1,15 +1,13 @@
-var React = require('react');
-var Router = require('react-router');
-var DefaultRoute = Router.DefaultRoute;
-var Link = Router.Link;
-var Route = Router.Route;
-var RouteHandler = Router.RouteHandler;
+"use-strict"
 
-var Landing = require('./pages/landing.jsx');
-var DashBoard = require('./pages/dashboard.jsx');
+import React from 'react';
+import Router, { Route, Link, DefaultRoute, RouteHandler } from "react-router";
 
-var App = React.createClass({
-  render: function () {
+import Landing from './pages/landing.jsx';
+import DashBoard from './pages/dashboard.jsx';
+
+const App = React.createClass({
+  render() {
     return (
       <div>
         <p>This is Application</p>
@@ -22,11 +20,11 @@ var App = React.createClass({
   }
 });
 
-module.exports = App;
+export default App;
 
-// routing stuff
-var routes = (
-  <Route handler="app" path="/" handler={App}>
+// setup routes
+const routes = (
+  <Route name="app" path="/" handler={App}>
     <Route name="landing" handler={Landing} />
     <Route name="dashboard" handler={DashBoard} />
   </Route>

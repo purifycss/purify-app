@@ -1,8 +1,8 @@
-var React = require('react');
-var Metric = require('../components/metric.jsx');
+import React from 'react';
+import Metric from '../components/metric.jsx';
 
-module.exports = React.createClass({
-  render: function () {
+const DashBoard = React.createClass({
+  render() {
     return (
       <div>
         <p>This is the dashboard page</p>
@@ -11,3 +11,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+export default DashBoard;

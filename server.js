@@ -1,6 +1,8 @@
 // Used to proxy webpack bundles from webpack - dev - server to localhost
+require("./register-babel");
+
 var proxy = require('koa-proxy');
-var bundle = require('./server/webpack.bundle.js');
+var bundle = require('./server/webpack.bundle');
 
 var serve = require('koa-static');
 var router = require('koa-router')();
