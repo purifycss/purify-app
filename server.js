@@ -1,6 +1,7 @@
-// Used to proxy webpack bundles from webpack - dev - server to localhost
+//Require hook to compile all subsequent .js files to es6
 require("./register-babel");
 
+// Used to proxy webpack bundles from webpack - dev - server to localhost
 var serve = require('koa-static');
 var router = require('koa-router')();
 
@@ -9,8 +10,8 @@ var bundle = require('./server/webpack.bundle');
 
 var co = require('co');
 
-var r = require('rethinkdbdash')();
-var config = require('./server/rethink.config.js');
+var config = require('./config/rethink.js');
+var r = require('rethinkdbdash')(config.rethinkdb);
 
 var koa = require('koa');
 var app = koa();
@@ -31,68 +32,66 @@ bundle();
 
 //route localhost:3000 request to localhost:8080 to fetch
 //latest bundle
-router.all('/build/*',proxy({
+router.all('/build/*', proxy({
   url: 'http://localhost:8080/build/bundle.js'
 }));
 
 /*
-DATABASE
+RETHINKDB
  */
-//INITIALIZE DATABASE
-co(function *() {
+//Initialize database
+co(function*() {
   try {
     console.log('Initializing database...');
 
-    yield r.dbCreate("purify").run();
-    yield r.db("purify").tableCreate("urls").run();
-    yield r.db("purify").table("urls")
-                       .indexCreate("url").run();
+    var name = 'purify';
+
+    yield r.dbCreate(name).run();
+    console.log('Database `purify` created');
+
+    yield r.db(name).tableCreate("urls").run();
+    console.log('Table `urls` created');
+
+    yield r.db(name).table("urls")
+      .indexCreate("url").run();
+
     console.log('Database created on port 8080');
-  }
-  catch (err) {
-    if (err.message.indexOf("already exists") == -1)
+  } catch (err) {
+    if (err.message.indexOf("already exists") !== -1)
       console.log(err.message);
   }
 });
 
-// router.get('/api/get', get);
-// router.put('/api/new', create);
-// // router.post('/api/update', update);
-// // router.post('/api/delete', del);
+router.get('/api/get', get);
+router.post('/api/update', update);
 
-// function* get(next) {
-//     try{
-//         var cursor = yield r.table('todos').orderBy({index: "createdAt"}).run(this._rdbConn);
-//         var result = yield cursor.toArray();
-//         this.body = JSON.stringify(result);
-//     }
-//     catch(e) {
-//         this.status = 500;
-//         this.body = e.message || http.STATUS_CODES[this.status];
-//     }
-//     yield next;
-// }
+function* get(next) {
+  try {
+    this.body =
+      yield r.db("purify").table("urls").run();
+  } catch (err) {
+    this.status = 500;
+    this.body = err.message || http.STATUS_CODES[this.status];
+  }
+  yield next;
+}
 
-// function* create(next) {
-//     try{
-//         // Parse the POST data
-//         var todo = yield parse(this);
-//         todo.createdAt = r.now(); // Set the field `createdAt` to the current time
+function* update(next) {
+  try {
+    // Parse the POST data
+    var url =
+      yield parse(this);
 
-//         // Insert a new Todo
-//         var result = yield r.table('todos').insert(todo, {returnChanges: true}).run(this._rdbConn);
+    // Insert a new Todo
+    this.body = yield r.db("purify").table('urls').insert({'url':url}).run();
 
-//         todo = result.new_val; // todo now contains the previous todo + a field `id` and `createdAt`
-//         this.body = JSON.stringify(todo);
-//     }
-//     catch(e) {
-//         this.status = 500;
-//         this.body = e.message || http.STATUS_CODES[this.status];
-//     }
-//     yield next;
-// }
-
-
+    console.log('succesfully inserted');
+  } catch (err) {
+    this.status = 500;
+    this.body = err.message || http.STATUS_CODES[this.status];
+  }
+  yield next;
+}
 
 /*
 OPEN KOA CONNECTION
