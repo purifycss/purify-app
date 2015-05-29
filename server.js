@@ -7,6 +7,8 @@ var router = require('koa-router')();
 var proxy = require('koa-proxy');
 var bundle = require('./server/webpack.bundle');
 
+var co = require('co');
+
 var r = require('rethinkdbdash')();
 var config = require('./server/rethink.config.js');
 
@@ -36,6 +38,22 @@ router.all('/build/*',proxy({
 /*
 DATABASE
  */
+//INITIALIZE DATABASE
+co(function *() {
+  try {
+    console.log('Initializing database...');
+
+    yield r.dbCreate("purify").run();
+    yield r.db("purify").tableCreate("urls").run();
+    yield r.db("purify").table("urls")
+                       .indexCreate("url").run();
+    console.log('Database created on port 8080');
+  }
+  catch (err) {
+    if (err.message.indexOf("already exists") == -1)
+      console.log(err.message);
+  }
+});
 
 // router.get('/api/get', get);
 // router.put('/api/new', create);
@@ -75,45 +93,6 @@ DATABASE
 // }
 
 
-// // Close the RethinkDB connection
-// app.use(closeConnection);
-
-// function* closeConnection(next) {
-//     this._rdbConn.close();
-// }
-
-//INITIALIZE DATABASE
-// r.connect(config.rethinkdb, function(err, conn) {
-//     if (err) {
-//         console.log("Could not open a connection to initialize the database");
-//         console.log(err.message);
-//         process.exit(1);
-//     }
-
-//     r.table('todos').indexWait('createdAt').run(conn).then(function(err, result) {
-//         console.log("Table and index are available");
-//     }).error(function(err) {
-//         // The database/table/index was not available, create them
-//         r.dbCreate(config.rethinkdb.db).run(conn).finally(function() {
-//             return r.tableCreate('todos').run(conn)
-//         }).finally(function() {
-//             r.table('todos').indexCreate('createdAt').run(conn);
-//         }).finally(function(result) {
-//             r.table('todos').indexWait('createdAt').run(conn)
-//         }).then(function(result) {
-//             console.log("Table and index are available");
-//             conn.close();
-//         }).error(function(err) {
-//             if (err) {
-//                 console.log("Could not wait for the completion of the index `todos`");
-//                 console.log(err);
-//                 process.exit(1);
-//             }
-//             console.log("Table and index are available, starting koa...");
-//             conn.close();
-//         });
-//     });
-// });
 
 /*
 OPEN KOA CONNECTION
@@ -121,8 +100,3 @@ OPEN KOA CONNECTION
 var server = app.listen(port, function() {
   console.log('Listening on port %d', server.address().port);
 });
-
-// function startKoa() {
-//     app.listen(config.koa.port);
-//     console.log('Listening on port '+config.koa.port);
-// }
