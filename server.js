@@ -10,22 +10,31 @@ var bundle = require('./server/webpack.bundle');
 
 var co = require('co');
 
+var logger = require('koa-logger');
+
 var config = require('./config/rethink.js');
 var r = require('rethinkdbdash')(config.rethinkdb);
 
 var koa = require('koa');
-var app = koa();
+var app = module.exports = koa();
 
-var port = 3000;
+var port = process.env.PORT || 3000;
+var env = process.env.NODE_ENV || 'dev';
 
 /*
 ROUTING
  */
+app.use(logger());
+
 // serve static index.html
 app.use(serve(__dirname));
 
 //mount router
 app.use(router.routes());
+
+router.get('/test', function*() {
+  this.body = "Hello, World";
+});
 
 //start webpack bundling process
 bundle();
@@ -33,8 +42,9 @@ bundle();
 //route localhost:3000 request to localhost:8080 to fetch
 //latest bundle
 router.all('/build/*', proxy({
-  url: 'http://localhost:8080/build/bundle.js'
+  url: 'http://localhost:8090/build/bundle.js'
 }));
+
 
 /*
 RETHINKDB
