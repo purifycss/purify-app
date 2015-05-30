@@ -11,6 +11,8 @@ var nodemon = require('gulp-nodemon');
 var mocha = require('gulp-mocha-co');
 var exit = require('gulp-exit');
 
+var jest = require('jest-cli');
+
 
 // ----------------------------------------------------------------------------
 // Constants
@@ -42,7 +44,7 @@ gulp.task("jscs", function () {
 });
 
 // ----------------------------------------------------------------------------
-// API TEST
+// API Test
 // ----------------------------------------------------------------------------
 gulp.task('nodemon', function() {
   nodemon({
@@ -53,22 +55,44 @@ gulp.task('nodemon', function() {
 })
 
 
-gulp.task('test-endpoint', function(){
+gulp.task('endpoint', function(){
   gulp.src(['test/server/*.js'])
     .pipe(mocha({
       reporter: 'nyan'
     }))
-    .pipe(exit());
+});
+
+// ----------------------------------------------------------------------------
+// Jest
+// ----------------------------------------------------------------------------
+
+gulp.task('jest', function (callback) {
+  var onComplete = function (result) {
+    if (result) {
+    } else {
+      console.log('!!! Jest tests failed! You should fix them soon. !!!');
+    }
+    callback();
+  }
+  jest.runCLI({}, __dirname, onComplete);
 });
 
 
 // ----------------------------------------------------------------------------
 // Quality
 // ----------------------------------------------------------------------------
-gulp.task('server', ['test-endpoint']);
-gulp.task("check", ["jscs", "eslint"]);
-gulp.task("check:ci", ["jscs", "eslint"]);
-gulp.task("check:all", ["jscs", "eslint"]);
+gulp.task("style", ["jscs", "eslint"]);
+gulp.task("style:ci", ["jscs", "eslint"]);
+gulp.task("style:all", ["jscs", "eslint"]);
+
+// ----------------------------------------------------------------------------
+// Testing
+// ----------------------------------------------------------------------------
+gulp.task('test:client', ['jest']);
+gulp.task('test:server', ['endpoint']);
+gulp.task('test', ['jest','endpoint']);
+
+
 
 // ----------------------------------------------------------------------------
 // Docs

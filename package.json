@@ -6,8 +6,7 @@
   "scripts": {
     "start": "node --harmony `which gulp`",
     "style": "gulp check",
-    "test-client": "jest",
-    "test": "node --harmony `which gulp` server",
+    "test": "node --harmony `which gulp` test",
     "dev": "webpack-dev-server --devtool eval --hot --progress --colors --content-base build"
   },
   "repository": {
@@ -50,6 +49,7 @@
     "gulp": "^3.8.11",
     "gulp-eslint": "^0.12.0",
     "gulp-exit": "0.0.2",
+    "gulp-jest": "^0.4.0",
     "gulp-jscs": "^1.6.0",
     "gulp-mdox": "0.0.2",
     "gulp-mocha-co": "^0.4.1-co.3",
