@@ -54,7 +54,7 @@ gulp.task('nodemon', function() {
 
 
 gulp.task('test-endpoint', function(){
-  gulp.src(['test/*.js'])
+  gulp.src(['test/server/*.js'])
     .pipe(mocha({
       reporter: 'nyan'
     }))
