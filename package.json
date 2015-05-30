@@ -7,7 +7,7 @@
     "start": "node --harmony `which gulp`",
     "style": "gulp check",
     "test-client": "jest",
-    "test-server": "node --harmony `which gulp` server",
+    "test": "node --harmony `which gulp` server",
     "dev": "webpack-dev-server --devtool eval --hot --progress --colors --content-base build"
   },
   "repository": {
@@ -18,6 +18,10 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/schoenflies/purify-app/issues"
+  },
+  "jest": {
+    "rootDir": "test/client",
+    "testDirectoryName": "test"
   },
   "homepage": "https://github.com/schoenflies/purify-app",
   "dependencies": {
