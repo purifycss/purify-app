@@ -2,9 +2,15 @@
  * Gulpfile
  */
 var gulp = require("gulp");
+
 var eslint = require("gulp-eslint");
 var jscs = require("gulp-jscs");
 var mdox = require("gulp-mdox");
+
+var nodemon = require('gulp-nodemon');
+var mocha = require('gulp-mocha-co');
+var exit = require('gulp-exit');
+
 
 // ----------------------------------------------------------------------------
 // Constants
@@ -36,8 +42,30 @@ gulp.task("jscs", function () {
 });
 
 // ----------------------------------------------------------------------------
+// API TEST
+// ----------------------------------------------------------------------------
+gulp.task('nodemon', function() {
+  nodemon({
+    script: 'server.js',
+    env: {PORT: 8000},
+    nodeArgs: ['--harmony']
+  }).on('restart');
+})
+
+
+gulp.task('test-endpoint', function(){
+  gulp.src(['test/*.js'])
+    .pipe(mocha({
+      reporter: 'nyan'
+    }))
+    .pipe(exit());
+});
+
+
+// ----------------------------------------------------------------------------
 // Quality
 // ----------------------------------------------------------------------------
+gulp.task('server', ['test-endpoint']);
 gulp.task("check", ["jscs", "eslint"]);
 gulp.task("check:ci", ["jscs", "eslint"]);
 gulp.task("check:all", ["jscs", "eslint"]);
@@ -62,4 +90,4 @@ gulp.task("check:all", ["jscs", "eslint"]);
 // ----------------------------------------------------------------------------
 // Aggregations
 // ----------------------------------------------------------------------------
-gulp.task("default", ["check"]);
+gulp.task('default', ['nodemon']);
