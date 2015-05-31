@@ -13,3 +13,15 @@
 2015-05-29T18:36:30.986594000 2.273344s notice: Listening on addresses: 127.0.0.1, ::1
 2015-05-29T18:36:30.986599000 2.273349s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
 2015-05-29T18:36:30.986605000 2.273355s notice: Server ready, "Phoebes_MacBook_Pro_local_ngx" 2b9d7bfa-f9d1-4ad1-bf3e-63a4d778461a
+2015-05-31T18:45:52.511910000 1.063907s notice: Running rethinkdb 2.0.2 (CLANG 6.1.0 (clang-602.0.53))...
+2015-05-31T18:45:52.683565000 1.235556s notice: Running on Darwin 14.1.0 x86_64
+2015-05-31T18:45:52.683628000 1.235616s notice: Loading data from directory /Users/phoebeli/floobits/HackReactor/thesis/purify-app/rethinkdb_data
+2015-05-31T18:45:54.390920000 2.942988s info: Automatically using cache size of 100 MB
+2015-05-31T18:45:54.390935000 2.943003s warn: Cache size does not leave much memory for server and query overhead (available memory: 380 MB).
+2015-05-31T18:45:54.390944000 2.943011s warn: Cache size is very low and may impact performance.
+2015-05-31T18:45:54.391959000 2.944027s notice: Listening for intracluster connections on port 29015
+2015-05-31T18:45:54.417822000 2.969890s notice: Listening for client driver connections on port 28015
+2015-05-31T18:45:54.417979000 2.970047s notice: Listening for administrative HTTP connections on port 8080
+2015-05-31T18:45:54.417987000 2.970055s notice: Listening on addresses: 127.0.0.1, ::1
+2015-05-31T18:45:54.417994000 2.970062s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2015-05-31T18:45:54.418000000 2.970068s notice: Server ready, "Phoebes_MacBook_Pro_local_ngx" 2b9d7bfa-f9d1-4ad1-bf3e-63a4d778461a

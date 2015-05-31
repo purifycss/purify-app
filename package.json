@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node --harmony `which gulp`",
-    "style": "gulp check",
+    "style": "gulp style",
     "test": "node --harmony `which gulp` test",
     "dev": "webpack-dev-server --devtool eval --hot --progress --colors --content-base build"
   },
@@ -25,7 +25,10 @@
   "homepage": "https://github.com/schoenflies/purify-app",
   "dependencies": {
     "babel": "^5.4.7",
+    "babel-runtime": "^5.4.7",
     "co": "^4.5.4",
+    "events": "^1.0.2",
+    "flux": "^2.0.3",
     "koa": "^0.5.2",
     "koa-logger": "^1.2.2",
     "koa-proxy": "^0.2.0",
