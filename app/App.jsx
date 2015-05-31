@@ -5,6 +5,7 @@ import Router, { Route, Link, DefaultRoute, RouteHandler } from "react-router";
 
 import Landing from './pages/landing.jsx';
 import DashBoard from './pages/dashboard.jsx';
+import Flux from './components/flux.jsx';
 
 const App = React.createClass({
   render() {
@@ -13,7 +14,7 @@ const App = React.createClass({
         <p>This is Application</p>
         <p><Link to="landing">Landing</Link></p>
         <p><Link to="dashboard">Dashboard</Link></p>
-
+        <p><Link to="test">Flux</Link></p>
         <RouteHandler/>
       </div>
     );
@@ -27,6 +28,7 @@ const routes = (
   <Route name="app" path="/" handler={App}>
     <Route name="landing" handler={Landing} />
     <Route name="dashboard" handler={DashBoard} />
+    <Route name="test" handler={Flux} />
   </Route>
 );
 
