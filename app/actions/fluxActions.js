@@ -1,14 +1,33 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var appConstants = require('../constants/appConstants');
+var Api = require('../apiUtil/Api');
 
 var fluxActions = {
-  addItem: function(item){
+  sendItem: function() {
+    Api
+      .get('/api/get')
+      .then(function(data) {
+        console.log(JSON.stringify(data));
+        AppDispatcher.handleViewAction({
+          actionType: appConstants.SEND_DATA,
+          data: data
+        });
+      })
+      .catch(function() {
+        AppDispatcher.handleViewAction({
+          actionType: appConstants.RECEIVE_ERROR,
+          error: 'There was a problem getting the categories'
+        });
+      });
+  },
+
+  addItem: function(item) {
     AppDispatcher.handleAction({
       actionType: appConstants.ADD_ITEM,
       data: item
     });
   },
-  removeItem: function(index){
+  removeItem: function(index) {
     AppDispatcher.handleAction({
       actionType: appConstants.REMOVE_ITEM,
       data: index

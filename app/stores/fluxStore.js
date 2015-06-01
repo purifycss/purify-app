@@ -13,6 +13,15 @@ var addItem = function(item){
   _store.list.push(item);
 };
 
+var addObject = function(data){
+  console.log('action data',data);
+  data.forEach(function(i){
+    _store.list.push(i.test);
+  })
+  // _store.list.push('added');
+  
+};
+
 var removeItem = function(index){
   _store.list.splice(index, 1);
 }
@@ -32,8 +41,8 @@ var fluxStore = objectAssign({}, EventEmitter.prototype, {
 AppDispatcher.register(function(payload){
   var action = payload.action;
   switch(action.actionType){
-    case appConstants.ADD_ITEM:
-      addItem(action.data);
+    case appConstants.SEND_DATA:
+      addObject(action.data);
       fluxStore.emit(CHANGE_EVENT);
       break;
     case appConstants.REMOVE_ITEM:
