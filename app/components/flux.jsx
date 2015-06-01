@@ -4,37 +4,39 @@ var fluxStore = require('../stores/fluxStore.js');
 var fluxActions = require('../actions/fluxActions.js');
 
 var flux = React.createClass({
-  getInitialState: function(){
+  getInitialState: function() {
     return {
       list: fluxStore.getList()
     }
   },
-  componentDidMount: function(){
+  componentDidMount: function() {
     fluxStore.addChangeListener(this._onChange);
   },
-  componentWillUnmount: function(){
+  componentWillUnmount: function() {
     fluxStore.removeChangeListener(this._onChange);
   },
-  handleAddItem: function(newItem){
+  handleAddItem: function(newItem) {
     fluxActions.addItem(newItem);
   },
-  handleRemoveItem: function(index){
+  handleRemoveItem: function(index) {
     fluxActions.removeItem(index);
   },
-  _onChange: function(){
+  handleSendItem: function(index) {
+    fluxActions.sendItem(index);
+  },
+  _onChange: function() {
     this.setState({
       list: fluxStore.getList()
     })
   },
-  render: function(){
-    return (
-      <div className="col-sm-6 col-md-offset-3">
-        <div className="col-sm-12">
-          <h3 className="text-center"> Flux </h3>
-          <button onClick={this.handleRemoveItem}/>
-          <p>{this.state.list}</p>
-        </div>
-      </div>
+  render: function() {
+    return ( < div className = "col-sm-6 col-md-offset-3" >
+      < div className = "col-sm-12" >
+      < h3 className = "text-center" > Flux < /h3> 
+      < button onClick = {this.handleSendItem}/> 
+      < p > {this.state.list} </p> 
+      < /div> 
+      < /div>
     )
   }
 });

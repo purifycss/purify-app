@@ -2,11 +2,11 @@ var app = require('../../server.js');
 var request = require('co-supertest').agent(app.listen());
 var expect = require('chai').expect;
 
-describe('/test', function() {
+describe('/api/flux', function() {
 
-  it('should return Hello, World', function *(){
-    var res = yield request.get('/test').expect(200).end();
-    expect(res.text).to.equal('Hello, World');
+  it('should return api works', function *(){
+    var res = yield request.get('/api/flux').expect(200).end();
+    expect(res.text).to.equal('api works');
   });
 
 });

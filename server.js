@@ -8,6 +8,7 @@ var router = require('koa-router')();
 var proxy = require('koa-proxy');
 var bundle = require('./server/webpack.bundle');
 
+var bodyParser = require('koa-bodyparser');
 var co = require('co');
 
 var logger = require('koa-logger');
@@ -32,8 +33,14 @@ app.use(serve(__dirname));
 //mount router
 app.use(router.routes());
 
-router.get('/test', function*() {
-  this.body = "Hello, World";
+//mount body-parser
+app.use(bodyParser());
+
+//test flux cycle
+router.get('/api/flux', function*() {
+  this.type = 'application/json';
+  // this.body = this.request.body = "api works";
+  this.body= "api works";
 });
 
 //start webpack bundling process
@@ -44,7 +51,6 @@ bundle();
 router.all('/build/*', proxy({
   url: 'http://localhost:8090/build/bundle.js'
 }));
-
 
 /*
 RETHINKDB
@@ -93,7 +99,10 @@ function* update(next) {
       yield parse(this);
 
     // Insert a new Todo
-    this.body = yield r.db("purify").table('urls').insert({'url':url}).run();
+    this.body =
+      yield r.db("purify").table('urls').insert({
+        'url': url
+      }).run();
 
     console.log('succesfully inserted');
   } catch (err) {
