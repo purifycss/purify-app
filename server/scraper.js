@@ -17,8 +17,7 @@ app.use(function*() {
   };
 
   //get base html
-  var res =
-    yield request(options);
+  var res = yield request(options);
 
   var $ = cheerio.load(res.body);
 
@@ -35,8 +34,7 @@ app.use(function*() {
     }
 
     //perform request
-    var cssres =
-      yield request(options);
+    var cssres = yield request(options);
 
     //append to css
     css += cssres.body;
@@ -56,8 +54,7 @@ app.use(function*() {
 
       if (options.url.indexOf('http') === -1 && options.url.indexOf('https') === -1) {
         //perform request
-        jsres =
-          yield request(options);
+        jsres = yield request(options);
         //append to css
         js += jsres.body;
       }
@@ -72,11 +69,15 @@ app.use(function*() {
     minify: false
   });
 
-  var message = 'before purify: ' + css.length + ' chars long\n'+'after purify: ' + uncss.length + ' chars long\n'+'uncss is ' + Math.floor((uncss.length / css.length) * 1000) / 1000 + ' % smaller'
+  var before = 'before purify: ' + css.length + ' chars long';
+  var after = 'after purify: ' + uncss.length + ' chars long';
+  var compare = 'uncss is ' + Math.floor((uncss.length / css.length) * 1000) / 1000 + ' % smaller';
 
-  console.log('before purify: ' + css.length + ' chars long');
-  console.log('after purify:' + uncss.length + 'chars long');
-  console.log('uncss is ' + Math.floor((uncss.length / css.length) * 1000) / 1000 + ' % smaller');
+  var message = before+'\n'+after+'\n'+compare;
+
+  console.log(before);
+  console.log(after);
+  console.log(compare);
 
   this.body = message;
 
