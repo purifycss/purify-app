@@ -1,3 +1,5 @@
+require("../register-babel");
+
 var express = require('express');
 var fs = require('fs');
 var request = require('request');
@@ -14,22 +16,39 @@ app.get('/', function(req, res) {
       var $ = cheerio.load(html);
 
       //get all external css
-      var css = $('link[rel=stylesheet]');
-      
-      //check extension for .css
+      var $css = $('link[rel=stylesheet]');
+      var css = "";
+
+      $css.each(function(i, node) {
+        var cssUrl = 'http:' + node.attribs.href;
+
+        request(cssUrl, function(err, res) {
+          css += res;
+        })
+      })
 
       //get all external js
-      var content = $('script[src]');
+      var $content = $('script[src]');
+      var js = "";
 
       //check extension for .js
+      $content.each(function(i, node) {
+        var type = node.attribs.type;
 
-      fs.writeFile('html.txt', text, function(err) {
-        if (err) throw err;
+        if (type === 'text/javascript') {
+
+          var jsUrl = 'http:' + node.attribs.src;
+
+          //make request
+          request(jsUrl, function(err, res) {
+            js += res;
+
+          })
+        }
 
       })
 
     }
-
 
     // Finally, we'll just send out a message to the browser reminding you that this app does not have a UI.
     res.send('Check your console!')
