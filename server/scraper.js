@@ -1,20 +1,22 @@
 require("../register-babel");
 
-var path = require('path');
 var app = require('koa')();
 var cheerio = require('cheerio');
-var fs = require('fs');
 var request = require('koa-request');
+var path = require('path');
+
+var purify = require('purify-css');
 
 app.use(function*() {
 
   var options = {
-    url: 'http://www.reddit.com',
+    url: 'https://scotch.io/',
     headers: {
       'User-Agent': 'request'
     }
   };
 
+  //get base html
   var res =
     yield request(options);
 
@@ -28,21 +30,21 @@ app.use(function*() {
     options.url = $css[i].attribs.href;
 
     //append http to url if not found
-    if (options.url.indexOf('http') === -1) {
+    if (options.url.indexOf('http') === -1 && options.url.indexOf('https') === -1) {
       options.url = 'http:' + options.url;
     }
 
     //perform request
-    res =
+    var cssres =
       yield request(options);
 
     //append to css
-    css += res.body;
+    css += cssres.body;
   }
 
   //get all external js
   var $js = $('script[src]');
-  var js = "";
+  var js = JSON.stringify(res.body); //include base html page
 
   for (var i = 0; i < $js.length; i++) {
     var type = $js[i].attribs.type;
@@ -52,17 +54,31 @@ app.use(function*() {
 
       options.url = 'http:' + $js[i].attribs.src;
 
-      //perform request
-      res =
-        yield request(options);
+      if (options.url.indexOf('http') === -1 && options.url.indexOf('https') === -1) {
+        //perform request
+        jsres =
+          yield request(options);
+        //append to css
+        js += jsres.body;
+      }
 
-      //append to css
-      js += res.body;
     }
 
   }
 
-  this.body = js;
+  //purify css
+  var uncss = purify(js, css, {
+    write: false,
+    minify: false
+  });
+
+  var message = 'before purify: ' + css.length + ' chars long\n'+'after purify: ' + uncss.length + ' chars long\n'+'uncss is ' + Math.floor((uncss.length / css.length) * 1000) / 1000 + ' % smaller'
+
+  console.log('before purify: ' + css.length + ' chars long');
+  console.log('after purify:' + uncss.length + 'chars long');
+  console.log('uncss is ' + Math.floor((uncss.length / css.length) * 1000) / 1000 + ' % smaller');
+
+  this.body = message;
 
 });
 
