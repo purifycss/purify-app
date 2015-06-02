@@ -3,11 +3,12 @@ var appConstants = require('../constants/appConstants');
 var Api = require('../apiUtil/Api');
 
 var fluxActions = {
-  sendItem: function() {
+  sendItem: function(content) {
+    console.log('fluxActions',content);
     Api
-      .get('/api/get')
+      .get('/api/purify',content)
       .then(function(data) {
-        console.log(JSON.stringify(data));
+        console.log('API',JSON.stringify(data));
         AppDispatcher.handleViewAction({
           actionType: appConstants.SEND_DATA,
           data: data

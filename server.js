@@ -8,7 +8,7 @@ var router = require('koa-router')();
 var proxy = require('koa-proxy');
 var bundle = require('./server/webpack.bundle');
 
-var bodyParser = require('koa-bodyparser');
+var parse = require('co-body');
 var co = require('co');
 
 var logger = require('koa-logger');
@@ -25,23 +25,22 @@ var env = process.env.NODE_ENV || 'dev';
 /*
 ROUTING
  */
+
+
 app.use(logger());
 
 // serve static index.html
 app.use(serve(__dirname));
 
-//mount router
+// mount router
 app.use(router.routes());
 
-//mount body-parser
-app.use(bodyParser());
-
 //test flux cycle
-router.get('/api/flux', function*() {
-  this.type = 'application/json';
-  // this.body = this.request.body = "api works";
-  this.body= "api works";
-});
+// router.get('/api/flux', function*() {
+//   this.type = 'application/json';
+//   // this.body = this.request.body = "api works";
+//   this.body = "api works";
+// });
 
 //start webpack bundling process
 bundle();
@@ -55,36 +54,41 @@ router.all('/build/*', proxy({
 /*
 RETHINKDB
  */
-//Initialize database
-co(function*() {
+// //Initialize database
+// co(function*() {
+//   try {
+//     console.log('Initializing database...');
+
+//     var name = 'purify';
+
+//     yield r.dbCreate(name).run();
+//     console.log('Database `purify` created');
+
+//     yield r.db(name).tableCreate("urls").run();
+//     console.log('Table `urls` created');
+
+//     yield r.db(name).table("urls")
+//       .indexCreate("url").run();
+
+//     console.log('Database created on port 8080');
+//   } catch (err) {
+//     if (err.message.indexOf("already exists") !== -1)
+//       console.log(err.message);
+//   }
+// });
+
+
+router.post('/api/purify', post);
+router.get('/api/purify', purify);
+
+function* post(next) {
+  // console.log('from server',text);
+
   try {
-    console.log('Initializing database...');
+    var text = yield parse.text(this);
+    console.log('server get', text);
+    this.body = text;
 
-    var name = 'purify';
-
-    yield r.dbCreate(name).run();
-    console.log('Database `purify` created');
-
-    yield r.db(name).tableCreate("urls").run();
-    console.log('Table `urls` created');
-
-    yield r.db(name).table("urls")
-      .indexCreate("url").run();
-
-    console.log('Database created on port 8080');
-  } catch (err) {
-    if (err.message.indexOf("already exists") !== -1)
-      console.log(err.message);
-  }
-});
-
-router.get('/api/get', get);
-router.post('/api/update', update);
-
-function* get(next) {
-  try {
-    this.body =
-      yield r.db("purify").table("urls").run();
   } catch (err) {
     this.status = 500;
     this.body = err.message || http.STATUS_CODES[this.status];
@@ -92,19 +96,20 @@ function* get(next) {
   yield next;
 }
 
-function* update(next) {
+function* purify(next) {
+
   try {
     // Parse the POST data
-    var url =
-      yield parse(this);
-
-    // Insert a new Todo
+    console.log('server', parse.json(this));
     this.body =
-      yield r.db("purify").table('urls').insert({
-        'url': url
-      }).run();
+      yield parse.json(this);
 
-    console.log('succesfully inserted');
+    // this.body =
+    //   yield r.db("purify").table('urls').insert({
+    //     'url': url
+    //   }).run();
+
+    // console.log('succesfully inserted');
   } catch (err) {
     this.status = 500;
     this.body = err.message || http.STATUS_CODES[this.status];
