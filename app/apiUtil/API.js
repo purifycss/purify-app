@@ -7,12 +7,11 @@ var request = require('superagent');
  */
 var Api = {
   get: function(url, content) {
-    console.log('Api get', content);
     return new Promise(function(resolve, reject) {
       request
         .post(url)
-        .set('Content-Type', 'application/text')
-        .send(JSON.stringify(content))
+        .set('Content-Type', 'application/json')
+        .send(content)
         .end(function(err, res) {
           if (res.status === 404) {
             reject();

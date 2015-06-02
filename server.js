@@ -11,6 +11,8 @@ var bundle = require('./server/webpack.bundle');
 var parse = require('co-body');
 var co = require('co');
 
+var purifycss = require('purify-css');
+
 var logger = require('koa-logger');
 
 var config = require('./config/rethink.js');
@@ -26,7 +28,6 @@ var env = process.env.NODE_ENV || 'dev';
 ROUTING
  */
 
-
 app.use(logger());
 
 // serve static index.html
@@ -34,13 +35,6 @@ app.use(serve(__dirname));
 
 // mount router
 app.use(router.routes());
-
-//test flux cycle
-// router.get('/api/flux', function*() {
-//   this.type = 'application/json';
-//   // this.body = this.request.body = "api works";
-//   this.body = "api works";
-// });
 
 //start webpack bundling process
 bundle();
@@ -77,39 +71,32 @@ RETHINKDB
 //   }
 // });
 
-
-router.post('/api/purify', post);
-router.get('/api/purify', purify);
-
-function* post(next) {
-  // console.log('from server',text);
-
-  try {
-    var text = yield parse.text(this);
-
-    this.body = text;
-
-  } catch (err) {
-    this.status = 500;
-    this.body = err.message || http.STATUS_CODES[this.status];
-  }
-  yield next;
-}
+router.post('/api/purify', purify);
 
 function* purify(next) {
 
   try {
-    // Parse the POST data
-    console.log('server', parse.json(this));
-    this.body =
-      yield parse.json(this);
+    var text = yield parse.json(this);
+    var content = text.content;
+    var css = text.css;
 
-    // this.body =
-    //   yield r.db("purify").table('urls').insert({
-    //     'url': url
-    //   }).run();
+console.log('content',content);
+console.log('css',css);
+    // purify css
+    var uncss = purifycss(content, css, {
+      write: false,
+      minify: false
+    });
+console.log('uncss',uncss);
 
-    // console.log('succesfully inserted');
+    var before = 'before purify: ' + css.length + ' chars long';
+    var after = 'after purify: ' + uncss.length + ' chars long';
+    var compare = 'uncss is ' + Math.floor((uncss.length / css.length) * 1000) / 1000 + ' % smaller';
+
+    var message = before + '\n' + after + '\n' + compare;
+
+    this.body = JSON.stringify(message);
+
   } catch (err) {
     this.status = 500;
     this.body = err.message || http.STATUS_CODES[this.status];
