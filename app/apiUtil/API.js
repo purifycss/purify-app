@@ -14,7 +14,6 @@ var Api = {
         .set('Content-Type', 'application/text')
         .send(JSON.stringify(content))
         .end(function(err, res) {
-          console.log('response',res);
           if (res.status === 404) {
             reject();
           } else {
