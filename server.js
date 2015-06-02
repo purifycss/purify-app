@@ -86,7 +86,7 @@ function* post(next) {
 
   try {
     var text = yield parse.text(this);
-    console.log('server get', text);
+
     this.body = text;
 
   } catch (err) {

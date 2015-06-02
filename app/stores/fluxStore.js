@@ -41,7 +41,6 @@ AppDispatcher.register(function(payload){
   var action = payload.action;
   switch(action.actionType){
     case appConstants.SEND_DATA:
-    console.log('from dispatcher',action.data);
       addItem(action.data);
       fluxStore.emit(CHANGE_EVENT);
       break;

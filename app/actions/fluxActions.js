@@ -4,11 +4,9 @@ var Api = require('../apiUtil/Api');
 
 var fluxActions = {
   sendItem: function(content) {
-    console.log('fluxActions',content);
     Api
       .get('/api/purify',content)
       .then(function(data) {
-        console.log('API',JSON.stringify(data));
         AppDispatcher.handleViewAction({
           actionType: appConstants.SEND_DATA,
           data: data
