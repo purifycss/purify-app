@@ -80,14 +80,11 @@ function* purify(next) {
     var content = text.content;
     var css = text.css;
 
-console.log('content',content);
-console.log('css',css);
     // purify css
     var uncss = purifycss(content, css, {
       write: false,
       minify: false
     });
-console.log('uncss',uncss);
 
     var before = 'before purify: ' + css.length + ' chars long';
     var after = 'after purify: ' + uncss.length + ' chars long';
