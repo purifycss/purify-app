@@ -14,7 +14,7 @@ const App = React.createClass({
         <p>This is Application</p>
         <p><Link to="landing">Landing</Link></p>
         <p><Link to="dashboard">Dashboard</Link></p>
-        <p><Link to="test">Flux</Link></p>
+        <p><Link to="input">Drag & Drop</Link></p>
         <RouteHandler/>
       </div>
     );
@@ -28,7 +28,7 @@ const routes = (
   <Route name="app" path="/" handler={App}>
     <Route name="landing" handler={Landing} />
     <Route name="dashboard" handler={DashBoard} />
-    <Route name="test" handler={Flux} />
+    <Route name="input" handler={Flux} />
   </Route>
 );
 

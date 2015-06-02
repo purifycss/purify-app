@@ -1,5 +1,6 @@
 var React = require('react');
 
+var Dropzone = require('./dropzone.jsx')
 var fluxStore = require('../stores/fluxStore.js');
 var fluxActions = require('../actions/fluxActions.js');
 
@@ -39,10 +40,7 @@ var flux = React.createClass({
   },
   render: function() {
     return ( < div >
-
-      < h3 > Flux < /h3> 
-      <textarea ref="content" placeholder="js/html"/>
-      <textarea ref="css" placeholder="css"/>
+      <Dropzone />
       < button onClick = {this.handleSendItem}>Submit</button> 
       < p > {this.state.val} </p> 
 
