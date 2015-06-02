@@ -13,7 +13,18 @@ var dropzone = React.createClass({
   },
 
   onDrop: function(files) {
-    console.log('Received files: ', files);
+    // console.log('Received files: ', files);
+
+    //read file
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      var text = reader.result;
+      console.log(text);
+    }
+
+    reader.readAsText(files[0], 'utf-8');
+
     this.setState({
       files: files
     });
@@ -73,19 +84,24 @@ var dropzone = React.createClass({
       float: "left"
     };
 
-    return ( < div >
+    return ( 
+    < div >
       < div style = {styling} >
-      < Dropzone onDrop = {this.onDrop} size = {150}
-      onClick = {this.onclick} >
-      < textarea ref="content" placeholder = "js/html" / >
-      < /Dropzone> < /div> 
+        < Dropzone onDrop = {this.onDrop} size = {150}
+          onClick = {this.onclick} >
+          < textarea ref="content" placeholder = "js/html" / >
+        < /Dropzone> 
+      < /div> 
       < div style = {styling} >
-      < Dropzone onDrop = {this.onDrop} size = {150}
-      onClick = {this.onclick} >
-      < textarea ref="css" placeholder = "css" / >
-      < /Dropzone> < /div> 
+        < Dropzone onDrop = {this.onDrop} size = {150}
+          onClick = {this.onclick} >
+          < textarea ref="css" placeholder = "css" / >
+        < /Dropzone> 
+      < /div> 
       < button onClick = {this.handleSendItem}>Submit</button> 
-      < p > {this.state.val} </p> {this.showFiles()} < /div>
+      < p > {this.state.val} </p> 
+      {this.showFiles()} 
+    < /div>
     );
   }
 });
