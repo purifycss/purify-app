@@ -6,11 +6,15 @@ var request = require('superagent');
  * Wrapper for calling a API
  */
 var Api = {
-  get: function (url) {
-    return new Promise(function (resolve, reject) {
+  get: function(url, content) {
+    console.log('Api get', content);
+    return new Promise(function(resolve, reject) {
       request
-        .get(url)
-        .end(function (err,res) {
+        .post(url)
+        .set('Content-Type', 'application/text')
+        .send(JSON.stringify(content))
+        .end(function(err, res) {
+          console.log('response',res);
           if (res.status === 404) {
             reject();
           } else {

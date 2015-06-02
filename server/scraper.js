@@ -10,7 +10,7 @@ var purify = require('purify-css');
 app.use(function*() {
 
   var options = {
-    url: 'https://scotch.io/',
+    url: 'http://www.reddit.com/r/minimalism',
     headers: {
       'User-Agent': 'request'
     }
@@ -30,7 +30,8 @@ app.use(function*() {
 
     //append http to url if not found
     if (options.url.indexOf('http') === -1 && options.url.indexOf('https') === -1) {
-      options.url = 'http:' + options.url;
+      options.url = 'http:' +options.url;
+      console.log('css: '+options.url)
     }
 
     //perform request
@@ -43,16 +44,20 @@ app.use(function*() {
   //get all external js
   var $js = $('script[src]');
   var js = JSON.stringify(res.body); //include base html page
+  // console.log($js);
 
   for (var i = 0; i < $js.length; i++) {
     var type = $js[i].attribs.type;
 
-    //check if type of source is javascript
+    // check if type of source is javascript
     if (type === 'text/javascript') {
 
-      options.url = 'http:' + $js[i].attribs.src;
+      options.url = $js[i].attribs.src;
 
       if (options.url.indexOf('http') === -1 && options.url.indexOf('https') === -1) {
+
+        options.url = "http:" + options.url;
+        console.log('js: '+options.url)
         //perform request
         jsres = yield request(options);
         //append to css
@@ -66,7 +71,7 @@ app.use(function*() {
   //purify css
   var uncss = purify(js, css, {
     write: false,
-    minify: false
+    minify: true
   });
 
   var before = 'before purify: ' + css.length + ' chars long';

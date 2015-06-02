@@ -6,7 +6,7 @@ var fluxActions = require('../actions/fluxActions.js');
 var flux = React.createClass({
   getInitialState: function() {
     return {
-      list: fluxStore.getList()
+      val: fluxStore.getList()
     }
   },
   componentDidMount: function() {
@@ -21,21 +21,28 @@ var flux = React.createClass({
   handleRemoveItem: function(index) {
     fluxActions.removeItem(index);
   },
-  handleSendItem: function(index) {
-    fluxActions.sendItem(index);
+  handleSendItem: function() {
+    var input = this.refs.box.getDOMNode().value;
+    console.log('handleSentItem',input);
+    fluxActions.sendItem(input);
   },
   _onChange: function() {
     this.setState({
       list: fluxStore.getList()
     })
   },
+  update:function(){
+    this.setState({val: this.refs.box.getDOMNode().value})
+
+  },
   render: function() {
-    return ( < div className = "col-sm-6 col-md-offset-3" >
-      < div className = "col-sm-12" >
-      < h3 className = "text-center" > Flux < /h3> 
-      < button onClick = {this.handleSendItem}/> 
-      < p > {this.state.list} </p> 
-      < /div> 
+    return ( < div >
+
+      < h3 > Flux < /h3> 
+      <textarea ref="box"/>
+      < button onClick = {this.handleSendItem}>Submit</button> 
+      < p > {this.state.val} </p> 
+
       < /div>
     )
   }
