@@ -22,8 +22,10 @@ var flux = React.createClass({
     fluxActions.removeItem(index);
   },
   handleSendItem: function() {
-    var input = this.refs.box.getDOMNode().value;
-    console.log('handleSentItem',input);
+    var content = this.refs.content.getDOMNode().value;
+    var css = this.refs.css.getDOMNode().value;
+    var input = {content:content,css:css};
+
     fluxActions.sendItem(input);
   },
   _onChange: function() {
@@ -39,7 +41,8 @@ var flux = React.createClass({
     return ( < div >
 
       < h3 > Flux < /h3> 
-      <textarea ref="box"/>
+      <textarea ref="content" placeholder="js/html"/>
+      <textarea ref="css" placeholder="css"/>
       < button onClick = {this.handleSendItem}>Submit</button> 
       < p > {this.state.val} </p> 
 
