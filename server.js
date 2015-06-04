@@ -76,9 +76,22 @@ router.post('/api/purify', purify);
 function* purify(next) {
 
   try {
-    var text = yield parse.json(this);
-    var content = text.content;
-    var css = text.css;
+    var input = yield parse.json(this);
+
+    var content = "";
+    var css = "";
+
+    //concatenate content array to string
+    input.content.forEach((function(item) {
+      content += item.toString();
+    }))
+
+    input.css.forEach((function(item) {
+      css += item.toString();
+    }))
+
+    // console.log('server js' + content);
+    // console.log('server css' + css);
 
     // purify css
     var uncss = purifycss(content, css, {
@@ -88,7 +101,7 @@ function* purify(next) {
 
     var before = 'before purify: ' + css.length + ' chars long';
     var after = 'after purify: ' + uncss.length + ' chars long';
-    var compare = 'uncss is ' + Math.floor((uncss.length / css.length) * 1000) / 1000 + ' % smaller';
+    var compare = 'uncss is ' + 100*Math.floor((uncss.length / css.length)*1000)/(1000) + ' % smaller';
 
     var message = before + '\n' + after + '\n' + compare;
 

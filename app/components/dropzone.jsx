@@ -8,26 +8,49 @@ var dropzone = React.createClass({
   getInitialState: function() {
     return {
       files: [],
+      content: [],
+      css: [],
       val: fluxStore.getList()
     };
   },
 
   onDrop: function(files) {
-    // console.log('Received files: ', files);
 
-    //read file
-    var reader = new FileReader();
+    var _files = this.state.files;
+    var _content = this.state.content;
+    var _css = this.state.css;
 
-    reader.onload = function(e) {
-      var text = reader.result;
-      console.log(text);
-    }
+    files.forEach(function(file) {
+      
+      var reader = new FileReader();
 
-    reader.readAsText(files[0], 'utf-8');
+      reader.onload = function(e) {
+        var text = reader.result;
+        console.log('text',text);
+
+        //check for file extension
+        if (file.name.indexOf('.js') !== -1) {
+          _content.push(text);
+          _files.push(file);
+        } else if(file.name.indexOf('.css') !== -1){
+          _css.push(text);
+          _files.push(file);
+        }else{
+          alert('file is not .js or .css')
+        }
+
+      }
+
+      reader.readAsText(file, 'utf-8');
+
+    })
 
     this.setState({
-      files: files
-    });
+      files: _files,
+      content: _content,
+      css: _css
+    })
+
   },
 
   showFiles: function() {
@@ -38,19 +61,17 @@ var dropzone = React.createClass({
     var files = this.state.files;
 
     return ( < div >
-      < h3 > Dropped files: < /h3> < ul > {
-        [].map.call(files, function(f, i) {
-          return <li key = {
-            i
-          } > {
-            f.name + ' : ' + f.size + ' bytes.'
-          } < /li>
-        })
-      } < /ul> < /div>
-    );
-  },
+      < h3 > Dropped files: < /h3> < ul > { [].map.call(files, function(f, i) {
+      return <li key = {
+        i
+      } > {
+        f.name + ' : ' + f.size + ' bytes.'
+      } < /li>
+    })
+} < /ul> < /div > );
+},
 
-  componentDidMount: function() {
+componentDidMount: function() {
     fluxStore.addChangeListener(this._onChange);
   },
   componentWillUnmount: function() {
@@ -65,10 +86,34 @@ var dropzone = React.createClass({
   handleSendItem: function() {
     var content = this.refs.content.getDOMNode().value;
     var css = this.refs.css.getDOMNode().value;
+
+    //add to global content/css
+    var _content = this.state.content;
+    var _css = this.state.css;
+
+    if(content !== ''){
+    _content.push(content);
+      
+    }
+
+    if(css !== ''){
+    _css.push(css);
+      
+    }
+
+
+    //update state
+    this.setState({
+      content: _content,
+      css: _css
+    })
+
+    //send to server
     var input = {
-      content: content,
-      css: css
+      content: this.state.content,
+      css: this.state.css
     };
+    // console.log('handleSentItem:' + JSON.stringify(input));
 
     fluxActions.sendItem(input);
   },
@@ -84,26 +129,44 @@ var dropzone = React.createClass({
       float: "left"
     };
 
-    return ( 
-    < div >
-      < div style = {styling} >
-        < Dropzone onDrop = {this.onDrop} size = {150}
-          onClick = {this.onclick} >
-          < textarea ref="content" placeholder = "js/html" / >
-        < /Dropzone> 
-      < /div> 
-      < div style = {styling} >
-        < Dropzone onDrop = {this.onDrop} size = {150}
-          onClick = {this.onclick} >
-          < textarea ref="css" placeholder = "css" / >
-        < /Dropzone> 
-      < /div> 
-      < button onClick = {this.handleSendItem}>Submit</button> 
-      < p > {this.state.val} </p> 
-      {this.showFiles()} 
-    < /div>
-    );
-  }
+    return ( < div >
+      < div style = {
+        styling
+      } >
+      < Dropzone onDrop = {
+        this.onDrop
+      }
+      size = {
+        150
+      }
+      onClick = {
+        this.onclick
+      } >
+      < textarea ref = "content"
+      placeholder = "js/html" / >
+      < /Dropzone>  < /div > < div style = {
+        styling
+      } >
+      < Dropzone onDrop = {
+        this.onDrop
+      }
+      size = {
+        150
+      }
+      onClick = {
+        this.onclick
+      } >
+      < textarea ref = "css"
+      placeholder = "css" / >
+      < /Dropzone>  < /div > < button onClick = {
+        this.handleSendItem
+      } > Submit < /button>  < p > {
+      this.state.val
+    } < /p>  {
+    this.showFiles()
+  } < /div>
+);
+}
 });
 
 module.exports = dropzone;

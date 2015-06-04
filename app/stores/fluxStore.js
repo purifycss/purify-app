@@ -14,12 +14,6 @@ var addItem = function(item){
   _store.list.push(item);
 };
 
-var addObject = function(data){
- console.log('from store',data);
-  
-  // _store.list.push('added');
-  
-};
 
 var removeItem = function(index){
   _store.list.splice(index, 1);
@@ -34,6 +28,9 @@ var fluxStore = objectAssign({}, EventEmitter.prototype, {
   },
   getList: function(){
     return _store.list;
+  },
+  getFiles: function(){
+    return _store.files;
   },
 });
 
