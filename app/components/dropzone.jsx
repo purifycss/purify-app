@@ -26,7 +26,6 @@ var dropzone = React.createClass({
 
       reader.onload = function(e) {
         var text = reader.result;
-        console.log('text',text);
 
         //check for file extension
         if (file.name.indexOf('.js') !== -1) {
@@ -129,44 +128,34 @@ componentDidMount: function() {
       float: "left"
     };
 
-    return ( < div >
-      < div style = {
-        styling
-      } >
-      < Dropzone onDrop = {
-        this.onDrop
-      }
-      size = {
-        150
-      }
-      onClick = {
-        this.onclick
-      } >
-      < textarea ref = "content"
-      placeholder = "js/html" / >
-      < /Dropzone>  < /div > < div style = {
-        styling
-      } >
-      < Dropzone onDrop = {
-        this.onDrop
-      }
-      size = {
-        150
-      }
-      onClick = {
-        this.onclick
-      } >
-      < textarea ref = "css"
-      placeholder = "css" / >
-      < /Dropzone>  < /div > < button onClick = {
-        this.handleSendItem
-      } > Submit < /button>  < p > {
-      this.state.val
-    } < /p>  {
-    this.showFiles()
-  } < /div>
-);
-}
-});
+    return ( 
+      <div>
+//       <div style = {
+//         styling
+//       }>
+//       <Dropzone onDrop = {this.onDrop}
+//       size = {270} onClick = {this.onclick}>
+//       < textarea ref = "content" placeholder = "js/html"/>
+//       </Dropzone>  </div> 
+
+//       <div style = {styling}>
+//       <Dropzone onDrop = {this.onDrop} size = {270}
+//       onClick = {this.onclick}>
+//       <textarea ref = "css" placeholder = "css" />
+//       </Dropzone>  
+//       </div> 
+// <br></br>
+//       < button onClick = {
+//         this.handleSendItem
+//       } > Submit < /button>  < p > {
+//       this.state.val
+//     } < /p>  {
+//     this.showFiles()
+//   } 
+     
+     </div>
+    )//return
+  }//render
+});//react.createclass
 
 module.exports = dropzone;
