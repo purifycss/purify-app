@@ -11,13 +11,25 @@ const App = React.createClass({
   render() {
     return (
       <div>
+      <section id="header">
+        <header class="major">
+          <h1>Purify CSS</h1>
+          <p>Remove dead weight CSS not being used in your app</p>
+        </header>
+        <div class="container">
+          <ul class="actions">
+
+          </ul>
+        </div>
+      </section> 
+
         <p><Link to="input">Drag & Drop</Link></p>
         <RouteHandler/>
-   
+
       <section id="footer">
         <div class="container">
           <header class="major">
-            <h2>Leo eu augue</h2>
+
           </header>
           <form method="post" action="#">
             <div class="row uniform">
@@ -33,13 +45,6 @@ const App = React.createClass({
           </form>
         </div>
         <footer>
-          <ul class="icons">
-            <li><a href="#" class="icon alt fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="icon alt fa-facebook"><span class="label">Facebook</span></a></li>
-            <li><a href="#" class="icon alt fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="icon alt fa-dribbble"><span class="label">Dribbble</span></a></li>
-            <li><a href="#" class="icon alt fa-envelope"><span class="label">Email</span></a></li>
-          </ul>
           <ul class="copyright">
             <li>&copy; Purify CSS</li>
           </ul>

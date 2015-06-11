@@ -82,6 +82,29 @@
 	      "div",
 	      null,
 	      _react2["default"].createElement(
+	        "section",
+	        { id: "header" },
+	        _react2["default"].createElement(
+	          "header",
+	          { "class": "major" },
+	          _react2["default"].createElement(
+	            "h1",
+	            null,
+	            "Purify CSS"
+	          ),
+	          _react2["default"].createElement(
+	            "p",
+	            null,
+	            "Remove dead weight CSS not being used in your app"
+	          )
+	        ),
+	        _react2["default"].createElement(
+	          "div",
+	          { "class": "container" },
+	          _react2["default"].createElement("ul", { "class": "actions" })
+	        )
+	      ),
+	      _react2["default"].createElement(
 	        "p",
 	        null,
 	        _react2["default"].createElement(
@@ -97,15 +120,7 @@
 	        _react2["default"].createElement(
 	          "div",
 	          { "class": "container" },
-	          _react2["default"].createElement(
-	            "header",
-	            { "class": "major" },
-	            _react2["default"].createElement(
-	              "h2",
-	              null,
-	              "Leo eu augue"
-	            )
-	          ),
+	          _react2["default"].createElement("header", { "class": "major" }),
 	          _react2["default"].createElement(
 	            "form",
 	            { method: "post", action: "#" },
@@ -146,75 +161,6 @@
 	        _react2["default"].createElement(
 	          "footer",
 	          null,
-	          _react2["default"].createElement(
-	            "ul",
-	            { "class": "icons" },
-	            _react2["default"].createElement(
-	              "li",
-	              null,
-	              _react2["default"].createElement(
-	                "a",
-	                { href: "#", "class": "icon alt fa-twitter" },
-	                _react2["default"].createElement(
-	                  "span",
-	                  { "class": "label" },
-	                  "Twitter"
-	                )
-	              )
-	            ),
-	            _react2["default"].createElement(
-	              "li",
-	              null,
-	              _react2["default"].createElement(
-	                "a",
-	                { href: "#", "class": "icon alt fa-facebook" },
-	                _react2["default"].createElement(
-	                  "span",
-	                  { "class": "label" },
-	                  "Facebook"
-	                )
-	              )
-	            ),
-	            _react2["default"].createElement(
-	              "li",
-	              null,
-	              _react2["default"].createElement(
-	                "a",
-	                { href: "#", "class": "icon alt fa-instagram" },
-	                _react2["default"].createElement(
-	                  "span",
-	                  { "class": "label" },
-	                  "Instagram"
-	                )
-	              )
-	            ),
-	            _react2["default"].createElement(
-	              "li",
-	              null,
-	              _react2["default"].createElement(
-	                "a",
-	                { href: "#", "class": "icon alt fa-dribbble" },
-	                _react2["default"].createElement(
-	                  "span",
-	                  { "class": "label" },
-	                  "Dribbble"
-	                )
-	              )
-	            ),
-	            _react2["default"].createElement(
-	              "li",
-	              null,
-	              _react2["default"].createElement(
-	                "a",
-	                { href: "#", "class": "icon alt fa-envelope" },
-	                _react2["default"].createElement(
-	                  "span",
-	                  { "class": "label" },
-	                  "Email"
-	                )
-	              )
-	            )
-	          ),
 	          _react2["default"].createElement(
 	            "ul",
 	            { "class": "copyright" },
