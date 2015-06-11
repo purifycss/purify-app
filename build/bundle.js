@@ -105,15 +105,119 @@
 	        )
 	      ),
 	      _react2["default"].createElement(
-	        "p",
-	        null,
+	        "section",
+	        { id: "one", "class": "main special" },
 	        _react2["default"].createElement(
-	          _reactRouter.Link,
-	          { to: "input" },
-	          "Drag & Drop"
+	          "div",
+	          { "class": "container" },
+	          _react2["default"].createElement(
+	            "div",
+	            { "class": "content" },
+	            _react2["default"].createElement(
+	              "header",
+	              { "class": "major" },
+	              _react2["default"].createElement(
+	                "h2",
+	                null,
+	                "Vis leo ut"
+	              )
+	            ),
+	            _react2["default"].createElement(
+	              "p",
+	              null,
+	              "Aliquam ante ac id. Adipiscing interdum lorem praesent fusce pellentesque arcu feugiat. Consequat sed ultricies rutrum. Sed adipiscing eu amet interdum lorem blandit vis ac commodo aliquet integer vulputate phasellus lorem ipsum dolor lorem magna consequat sed etiam adipiscing interdum."
+	            )
+	          )
 	        )
 	      ),
-	      _react2["default"].createElement(_reactRouter.RouteHandler, null),
+	      _react2["default"].createElement(
+	        "section",
+	        { id: "two", "class": "main special" },
+	        _react2["default"].createElement(
+	          "div",
+	          { "class": "container" },
+	          _react2["default"].createElement(
+	            "div",
+	            { "class": "content" },
+	            _react2["default"].createElement(
+	              "p",
+	              null,
+	              _react2["default"].createElement(_reactRouter.Link, { to: "input" })
+	            ),
+	            _react2["default"].createElement(_reactRouter.RouteHandler, null)
+	          )
+	        )
+	      ),
+	      _react2["default"].createElement(
+	        "section",
+	        { id: "three", "class": "main special" },
+	        _react2["default"].createElement(
+	          "div",
+	          { "class": "container" },
+	          _react2["default"].createElement(
+	            "div",
+	            { "class": "content" },
+	            _react2["default"].createElement(
+	              "header",
+	              { "class": "major" },
+	              _react2["default"].createElement(
+	                "h2",
+	                null,
+	                "Augue ata ut"
+	              )
+	            ),
+	            _react2["default"].createElement(
+	              "p",
+	              null,
+	              "Consequat sed ultricies rutrum. Sed adipiscing eu amet interdum lorem blandit vis ac commodo aliquet vulputate."
+	            ),
+	            _react2["default"].createElement(
+	              "ul",
+	              { "class": "icons-grid" },
+	              _react2["default"].createElement(
+	                "li",
+	                null,
+	                _react2["default"].createElement("span", { "class": "icon major fa-camera-retro" }),
+	                _react2["default"].createElement(
+	                  "h3",
+	                  null,
+	                  "Github"
+	                )
+	              ),
+	              _react2["default"].createElement(
+	                "li",
+	                null,
+	                _react2["default"].createElement("span", { "class": "icon major fa-pencil" }),
+	                _react2["default"].createElement(
+	                  "h3",
+	                  null,
+	                  "Weback"
+	                )
+	              ),
+	              _react2["default"].createElement(
+	                "li",
+	                null,
+	                _react2["default"].createElement("span", { "class": "icon major fa-code" }),
+	                _react2["default"].createElement(
+	                  "h3",
+	                  null,
+	                  "Grunt"
+	                )
+	              ),
+	              _react2["default"].createElement(
+	                "li",
+	                null,
+	                _react2["default"].createElement("span", { "class": "icon major fa-coffee" }),
+	                _react2["default"].createElement(
+	                  "h3",
+	                  null,
+	                  "Gulp"
+	                )
+	              )
+	            )
+	          )
+	        )
+	      ),
 	      _react2["default"].createElement(
 	        "section",
 	        { id: "footer" },

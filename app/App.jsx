@@ -23,8 +23,62 @@ const App = React.createClass({
         </div>
       </section> 
 
-        <p><Link to="input">Drag & Drop</Link></p>
+      <section id="one" class="main special">
+        <div class="container">
+
+          <div class="content">
+            <header class="major">
+              <h2>Vis leo ut</h2>
+            </header>
+            <p>Aliquam ante ac id. Adipiscing interdum lorem praesent fusce pellentesque arcu feugiat. Consequat sed ultricies rutrum. Sed adipiscing eu amet interdum lorem blandit vis ac commodo aliquet integer vulputate phasellus lorem ipsum dolor lorem magna consequat sed etiam adipiscing interdum.</p>
+          </div>
+
+        </div>
+      </section>
+
+            <section id="two" class="main special">
+        <div class="container">
+
+          <div class="content">
+            <p><Link to="input"></Link></p>
         <RouteHandler/>
+          </div>
+
+        </div>
+      </section>
+
+        
+
+        <section id="three" class="main special">
+        <div class="container">
+ 
+          <div class="content">
+            <header class="major">
+              <h2>Augue ata ut</h2>
+            </header>
+            <p>Consequat sed ultricies rutrum. Sed adipiscing eu amet interdum lorem blandit vis ac commodo aliquet vulputate.</p>
+            <ul class="icons-grid">
+              <li>
+                <span class="icon major fa-camera-retro"></span>
+                <h3>Github</h3>
+              </li>
+              <li>
+                <span class="icon major fa-pencil"></span>
+                <h3>Weback</h3>
+              </li>
+              <li>
+                <span class="icon major fa-code"></span>
+                <h3>Grunt</h3>
+              </li>
+              <li>
+                <span class="icon major fa-coffee"></span>
+                <h3>Gulp</h3>
+              </li>
+            </ul>
+          </div>
+   
+        </div>
+      </section>
 
       <section id="footer">
         <div class="container">
