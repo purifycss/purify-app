@@ -133,26 +133,22 @@ componentDidMount: function() {
         styling
       }>
       <Dropzone onDrop = {this.onDrop}
-      size = {150} onClick = {this.onclick}>
-      < textarea ref = "content" placeholder = "js/html" / >
+      size = {400} onClick = {this.onclick}>
+      < textarea ref = "content" placeholder = "js/html"/>
       </Dropzone>  </div> 
 
       <div style = {styling}>
-      <Dropzone onDrop = {this.onDrop} size = {150}
+      <Dropzone onDrop = {this.onDrop} size = {400}
       onClick = {this.onclick}>
-      < textarea ref = "css"
-      placeholder = "css" / >
-      < /Dropzone>  < /div > 
-<br></br>
-      < button onClick = {
-        this.handleSendItem
-      } > Submit < /button>  < p > {
-      this.state.val
-    } < /p>  {
-    this.showFiles()
-  } < /div>
-);
-}
+      <textarea ref = "css" placeholder = "css" />
+      </Dropzone>  
+      </div> 
+      <div></div>
+      <button onClick = {this.handleSendItem} > Submit < /button>  < p > {this.state.val} < /p>  {this.showFiles()} 
+
+      </div>
+    );
+  }
 });
 
 module.exports = dropzone;

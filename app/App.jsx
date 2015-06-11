@@ -36,7 +36,7 @@ const App = React.createClass({
         </div>
       </section>
 
-            <section id="two" class="main special">
+      <section id="two" class="main special">
         <div class="container">
 
           <div class="content">
@@ -47,6 +47,8 @@ const App = React.createClass({
         </div>
       </section>
 
+      <div></div>
+
         
 
         <section id="three" class="main special">
@@ -54,9 +56,9 @@ const App = React.createClass({
  
           <div class="content">
             <header class="major">
-              <h2>Augue ata ut</h2>
+              <h2>NPM MODULES</h2>
             </header>
-            <p>Consequat sed ultricies rutrum. Sed adipiscing eu amet interdum lorem blandit vis ac commodo aliquet vulputate.</p>
+    
             <ul class="icons-grid">
               <li>
                 <span class="icon major fa-camera-retro"></span>

@@ -148,6 +148,7 @@
 	          )
 	        )
 	      ),
+	      _react2["default"].createElement("div", null),
 	      _react2["default"].createElement(
 	        "section",
 	        { id: "three", "class": "main special" },
@@ -163,13 +164,8 @@
 	              _react2["default"].createElement(
 	                "h2",
 	                null,
-	                "Augue ata ut"
+	                "NPM MODULES"
 	              )
-	            ),
-	            _react2["default"].createElement(
-	              "p",
-	              null,
-	              "Consequat sed ultricies rutrum. Sed adipiscing eu amet interdum lorem blandit vis ac commodo aliquet vulputate."
 	            ),
 	            _react2["default"].createElement(
 	              "ul",
@@ -24091,7 +24087,7 @@
 	        React.createElement(
 	          Dropzone,
 	          { onDrop: this.onDrop,
-	            size: 150, onClick: this.onclick },
+	            size: 400, onClick: this.onclick },
 	          React.createElement('textarea', { ref: 'content', placeholder: 'js/html' })
 	        ),
 	        '  '
@@ -24101,14 +24097,12 @@
 	        { style: styling },
 	        React.createElement(
 	          Dropzone,
-	          { onDrop: this.onDrop, size: 150,
+	          { onDrop: this.onDrop, size: 400,
 	            onClick: this.onclick },
-	          React.createElement('textarea', { ref: 'css',
-	            placeholder: 'css' })
-	        ),
-	        '  '
+	          React.createElement('textarea', { ref: 'css', placeholder: 'css' })
+	        )
 	      ),
-	      React.createElement('br', null),
+	      React.createElement('div', null),
 	      React.createElement(
 	        'button',
 	        { onClick: this.handleSendItem },
@@ -24123,8 +24117,7 @@
 	        ' '
 	      ),
 	      '  ',
-	      this.showFiles(),
-	      ' '
+	      this.showFiles()
 	    );
 	  }
 	});
