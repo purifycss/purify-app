@@ -82,166 +82,30 @@
 	      "div",
 	      null,
 	      _react2["default"].createElement(
-	        "head",
+	        "p",
 	        null,
 	        _react2["default"].createElement(
-	          "title",
-	          null,
-	          "Purify CSS"
-	        ),
-	        _react2["default"].createElement("meta", { charset: "utf-8" }),
-	        _react2["default"].createElement("meta", { name: "viewport", content: "width=device-width, initial-scale=1" }),
-	        _react2["default"].createElement("link", { rel: "stylesheet", href: "../assets/css/main.css" })
-	      ),
-	      _react2["default"].createElement(
-	        "section",
-	        { id: "header" },
-	        _react2["default"].createElement(
-	          "header",
-	          { "class": "major" },
-	          _react2["default"].createElement(
-	            "h1",
-	            null,
-	            "Purify CSS"
-	          ),
-	          _react2["default"].createElement(
-	            "p",
-	            null,
-	            "Remove dead weight CSS not being used in your app"
-	          )
-	        ),
-	        _react2["default"].createElement(
-	          "div",
-	          { "class": "container" },
-	          _react2["default"].createElement("ul", { "class": "actions" })
+	          _reactRouter.Link,
+	          { to: "input" },
+	          "Drag & Drop"
 	        )
 	      ),
-	      _react2["default"].createElement(
-	        "section",
-	        { id: "one", "class": "main special" },
-	        _react2["default"].createElement(
-	          "div",
-	          { "class": "container" },
-	          _react2["default"].createElement(
-	            "div",
-	            { "class": "content" },
-	            _react2["default"].createElement(
-	              "header",
-	              { "class": "major" },
-	              _react2["default"].createElement(
-	                "h2",
-	                null,
-	                "Vis leo ut"
-	              )
-	            ),
-	            _react2["default"].createElement(
-	              "p",
-	              null,
-	              "Aliquam ante ac id. Adipiscing interdum lorem praesent fusce pellentesque arcu feugiat. Consequat sed ultricies rutrum. Sed adipiscing eu amet interdum lorem blandit vis ac commodo aliquet integer vulputate phasellus lorem ipsum dolor lorem magna consequat sed etiam adipiscing interdum."
-	            )
-	          )
-	        )
-	      ),
-	      _react2["default"].createElement(
-	        "section",
-	        { id: "three", "class": "main special" },
-	        _react2["default"].createElement(
-	          "div",
-	          { "class": "container" },
-	          _react2["default"].createElement(
-	            "div",
-	            { "class": "content" },
-	            _react2["default"].createElement(
-	              "header",
-	              { "class": "major" },
-	              _react2["default"].createElement(
-	                "h2",
-	                null,
-	                "Vis eget augue"
-	              )
-	            ),
-	            _react2["default"].createElement(
-	              "p",
-	              null,
-	              "hello world"
-	            ),
-	            _react2["default"].createElement(
-	              "p",
-	              null,
-	              _react2["default"].createElement(_reactRouter.Link, { to: "input" })
-	            ),
-	            _react2["default"].createElement(_reactRouter.RouteHandler, null)
-	          )
-	        )
-	      ),
-	      _react2["default"].createElement("div", null),
-	      _react2["default"].createElement(
-	        "section",
-	        { id: "two", "class": "main special" },
-	        _react2["default"].createElement(
-	          "div",
-	          { "class": "container" },
-	          _react2["default"].createElement(
-	            "div",
-	            { "class": "content" },
-	            _react2["default"].createElement(
-	              "header",
-	              { "class": "major" },
-	              _react2["default"].createElement(
-	                "h2",
-	                null,
-	                "NPM PLUGINS"
-	              )
-	            ),
-	            _react2["default"].createElement(
-	              "p",
-	              null,
-	              "Consequat sed ultricies rutrum. Sed adipiscing eu amet interdum lorem blandit vis ac commodo aliquet vulputate."
-	            ),
-	            _react2["default"].createElement(
-	              "ul",
-	              { "class": "icons-grid" },
-	              _react2["default"].createElement(
-	                "div",
-	                null,
-	                _react2["default"].createElement("span", { "class": "icon major fa-pencil" }),
-	                _react2["default"].createElement(
-	                  "h3",
-	                  null,
-	                  "Weback"
-	                )
-	              ),
-	              _react2["default"].createElement(
-	                "div",
-	                null,
-	                _react2["default"].createElement("span", { "class": "icon major fa-code" }),
-	                _react2["default"].createElement(
-	                  "h3",
-	                  null,
-	                  "Grunt"
-	                )
-	              ),
-	              _react2["default"].createElement(
-	                "div",
-	                null,
-	                _react2["default"].createElement("span", { "class": "icon major fa-coffee" }),
-	                _react2["default"].createElement(
-	                  "h3",
-	                  null,
-	                  "Gulp"
-	                )
-	              )
-	            )
-	          )
-	        )
-	      ),
+	      _react2["default"].createElement(_reactRouter.RouteHandler, null),
 	      _react2["default"].createElement(
 	        "section",
 	        { id: "footer" },
 	        _react2["default"].createElement(
 	          "div",
 	          { "class": "container" },
-	          _react2["default"].createElement("header", { "class": "major" }),
+	          _react2["default"].createElement(
+	            "header",
+	            { "class": "major" },
+	            _react2["default"].createElement(
+	              "h2",
+	              null,
+	              "Leo eu augue"
+	            )
+	          ),
 	          _react2["default"].createElement(
 	            "form",
 	            { method: "post", action: "#" },
@@ -270,7 +134,7 @@
 	                  "ul",
 	                  { "class": "actions" },
 	                  _react2["default"].createElement(
-	                    "div",
+	                    "li",
 	                    null,
 	                    _react2["default"].createElement("input", { type: "submit", value: "Send Message", "class": "special" })
 	                  )
@@ -284,9 +148,78 @@
 	          null,
 	          _react2["default"].createElement(
 	            "ul",
+	            { "class": "icons" },
+	            _react2["default"].createElement(
+	              "li",
+	              null,
+	              _react2["default"].createElement(
+	                "a",
+	                { href: "#", "class": "icon alt fa-twitter" },
+	                _react2["default"].createElement(
+	                  "span",
+	                  { "class": "label" },
+	                  "Twitter"
+	                )
+	              )
+	            ),
+	            _react2["default"].createElement(
+	              "li",
+	              null,
+	              _react2["default"].createElement(
+	                "a",
+	                { href: "#", "class": "icon alt fa-facebook" },
+	                _react2["default"].createElement(
+	                  "span",
+	                  { "class": "label" },
+	                  "Facebook"
+	                )
+	              )
+	            ),
+	            _react2["default"].createElement(
+	              "li",
+	              null,
+	              _react2["default"].createElement(
+	                "a",
+	                { href: "#", "class": "icon alt fa-instagram" },
+	                _react2["default"].createElement(
+	                  "span",
+	                  { "class": "label" },
+	                  "Instagram"
+	                )
+	              )
+	            ),
+	            _react2["default"].createElement(
+	              "li",
+	              null,
+	              _react2["default"].createElement(
+	                "a",
+	                { href: "#", "class": "icon alt fa-dribbble" },
+	                _react2["default"].createElement(
+	                  "span",
+	                  { "class": "label" },
+	                  "Dribbble"
+	                )
+	              )
+	            ),
+	            _react2["default"].createElement(
+	              "li",
+	              null,
+	              _react2["default"].createElement(
+	                "a",
+	                { href: "#", "class": "icon alt fa-envelope" },
+	                _react2["default"].createElement(
+	                  "span",
+	                  { "class": "label" },
+	                  "Email"
+	                )
+	              )
+	            )
+	          ),
+	          _react2["default"].createElement(
+	            "ul",
 	            { "class": "copyright" },
 	            _react2["default"].createElement(
-	              "div",
+	              "li",
 	              null,
 	              "© Purify CSS"
 	            )
@@ -303,6 +236,8 @@
 	var routes = _react2["default"].createElement(
 	  _reactRouter.Route,
 	  { name: "app", path: "/", handler: App },
+	  _react2["default"].createElement(_reactRouter.Route, { name: "landing", handler: _pagesLandingJsx2["default"] }),
+	  _react2["default"].createElement(_reactRouter.Route, { name: "dashboard", handler: _pagesDashboardJsx2["default"] }),
 	  _react2["default"].createElement(_reactRouter.Route, { name: "input", handler: _componentsDropzoneJsx2["default"] })
 	);
 
@@ -24092,17 +24027,57 @@
 	  },
 
 	  render: function render() {
+	    var styling = {
+	      // padding: 30,
+	      float: 'left'
+	    };
+
 	    return React.createElement(
 	      'div',
 	      null,
 	      React.createElement(
+	        'div',
+	        { style: styling },
+	        React.createElement(
+	          Dropzone,
+	          { onDrop: this.onDrop,
+	            size: 150, onClick: this.onclick },
+	          React.createElement('textarea', { ref: 'content', placeholder: 'js/html' })
+	        ),
+	        '  '
+	      ),
+	      React.createElement(
+	        'div',
+	        { style: styling },
+	        React.createElement(
+	          Dropzone,
+	          { onDrop: this.onDrop, size: 150,
+	            onClick: this.onclick },
+	          React.createElement('textarea', { ref: 'css',
+	            placeholder: 'css' })
+	        ),
+	        '  '
+	      ),
+	      React.createElement('br', null),
+	      React.createElement(
+	        'button',
+	        { onClick: this.handleSendItem },
+	        ' Submit '
+	      ),
+	      '  ',
+	      React.createElement(
 	        'p',
 	        null,
-	        'Metrics'
-	      )
+	        ' ',
+	        this.state.val,
+	        ' '
+	      ),
+	      '  ',
+	      this.showFiles(),
+	      ' '
 	    );
 	  }
-	}); //react.createclass
+	});
 
 	module.exports = dropzone;
 

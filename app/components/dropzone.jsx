@@ -128,34 +128,31 @@ componentDidMount: function() {
       float: "left"
     };
 
-    return ( 
-      <div>
-//       <div style = {
-//         styling
-//       }>
-//       <Dropzone onDrop = {this.onDrop}
-//       size = {270} onClick = {this.onclick}>
-//       < textarea ref = "content" placeholder = "js/html"/>
-//       </Dropzone>  </div> 
+    return ( <div>
+      <div style = {
+        styling
+      }>
+      <Dropzone onDrop = {this.onDrop}
+      size = {150} onClick = {this.onclick}>
+      < textarea ref = "content" placeholder = "js/html" / >
+      </Dropzone>  </div> 
 
-//       <div style = {styling}>
-//       <Dropzone onDrop = {this.onDrop} size = {270}
-//       onClick = {this.onclick}>
-//       <textarea ref = "css" placeholder = "css" />
-//       </Dropzone>  
-//       </div> 
-// <br></br>
-//       < button onClick = {
-//         this.handleSendItem
-//       } > Submit < /button>  < p > {
-//       this.state.val
-//     } < /p>  {
-//     this.showFiles()
-//   } 
-     
-     </div>
-    )//return
-  }//render
-});//react.createclass
+      <div style = {styling}>
+      <Dropzone onDrop = {this.onDrop} size = {150}
+      onClick = {this.onclick}>
+      < textarea ref = "css"
+      placeholder = "css" / >
+      < /Dropzone>  < /div > 
+<br></br>
+      < button onClick = {
+        this.handleSendItem
+      } > Submit < /button>  < p > {
+      this.state.val
+    } < /p>  {
+    this.showFiles()
+  } < /div>
+);
+}
+});
 
 module.exports = dropzone;
