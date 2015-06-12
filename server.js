@@ -39,8 +39,8 @@ app.use(router.routes());
 //start webpack bundling process
 bundle();
 
-//route localhost:3000 request to localhost:8080 to fetch
-//latest bundle
+// route localhost:3000 request to localhost:8080 to fetch
+// latest bundle
 router.all('/build/*', proxy({
   url: 'http://localhost:8090/build/bundle.js'
 }));

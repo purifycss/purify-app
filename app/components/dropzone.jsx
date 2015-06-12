@@ -59,18 +59,24 @@ var dropzone = React.createClass({
 
     var files = this.state.files;
 
-    return ( < div >
-      < h3 > Dropped files: < /h3> < ul > { [].map.call(files, function(f, i) {
-      return <li key = {
-        i
-      } > {
-        f.name + ' : ' + f.size + ' bytes.'
-      } < /li>
-    })
-} < /ul> < /div > );
-},
+    return ( 
+      <div>
+      <h3> Dropped files: </h3> 
+        <ul> 
+        {
+          [].map.call(files, function(f, i) {
+          return 
+            <li key = {i}> 
+              {f.name + ' : ' + f.size + ' bytes.'} 
+            </li>
+            })
+        } 
+        </ul> 
+      </div >
+      );
+   },
 
-componentDidMount: function() {
+  componentDidMount: function() {
     fluxStore.addChangeListener(this._onChange);
   },
   componentWillUnmount: function() {
@@ -100,7 +106,6 @@ componentDidMount: function() {
       
     }
 
-
     //update state
     this.setState({
       content: _content,
@@ -112,7 +117,6 @@ componentDidMount: function() {
       content: this.state.content,
       css: this.state.css
     };
-    // console.log('handleSentItem:' + JSON.stringify(input));
 
     fluxActions.sendItem(input);
   },
@@ -124,27 +128,39 @@ componentDidMount: function() {
 
   render: function() {
     var styling = {
-      // padding: 30,
-      float: "left"
+      padding: 5,
+      float: "left",
+      height:600
     };
 
-    return ( <div>
-      <div style = {
-        styling
-      }>
-      <Dropzone onDrop = {this.onDrop}
-      size = {400} onClick = {this.onclick}>
-      < textarea ref = "content" placeholder = "js/html"/>
-      </Dropzone>  </div> 
+    var clearfloat = {
+      clear: "both"
+    };
+
+    var drop = {
+      height: 600,
+      width: 600
+    }
+
+    return ( 
+      <div>
+        <div style = {styling}>
+          <Dropzone onDrop = {this.onDrop} style={drop} onClick = {this.onclick}>
+            <textarea ref = "content" placeholder = "js/html"/>
+          </Dropzone>  
+        </div> 
 
       <div style = {styling}>
-      <Dropzone onDrop = {this.onDrop} size = {400}
-      onClick = {this.onclick}>
-      <textarea ref = "css" placeholder = "css" />
-      </Dropzone>  
+        <Dropzone onDrop = {this.onDrop} style={drop} onClick = {this.onclick}>
+          <textarea ref = "css" placeholder = "css" />
+        </Dropzone>  
       </div> 
-      <div></div>
-      <button onClick = {this.handleSendItem} > Submit < /button>  < p > {this.state.val} < /p>  {this.showFiles()} 
+      
+      <button onClick = {this.handleSendItem}> Submit </button>  
+      <p> {this.state.val} </p>  
+      {this.showFiles()} 
+
+      <div style={clearfloat}></div>
 
       </div>
     );
