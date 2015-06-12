@@ -1,23 +1,25 @@
 //Require hook to compile all subsequent .js files to es6
 require("./register-babel");
 
-// Used to proxy webpack bundles from webpack - dev - server to localhost
 var serve = require('koa-static');
 var router = require('koa-router')();
 
+// Used to proxy webpack bundles from webpack - dev - server to localhost
 var proxy = require('koa-proxy');
 var bundle = require('./server/webpack.bundle');
 
-var parse = require('co-body');
 var co = require('co');
-
-var purifycss = require('purify-css');
-
+var parse = require('co-body');
 var logger = require('koa-logger');
 
+//purify css module to remove unused css
+var purifycss = require('purify-css');
+
+//database
 var config = require('./config/rethink.js');
 var r = require('rethinkdbdash')(config.rethinkdb);
 
+//initialize server
 var koa = require('koa');
 var app = module.exports = koa();
 
@@ -40,7 +42,7 @@ app.use(router.routes());
 bundle();
 
 // route localhost:3000 request to localhost:8080 to fetch
-// latest bundle
+// latest webpack bundle
 router.all('/build/*', proxy({
   url: 'http://localhost:8090/build/bundle.js'
 }));
@@ -73,11 +75,13 @@ RETHINKDB
 
 router.post('/api/purify', purify);
 
+//receive data from client, remove unused css, and send message back to client
 function* purify(next) {
 
   try {
     var input = yield parse.json(this);
 
+    //initialize content and css string
     var content = "";
     var css = "";
 
@@ -86,12 +90,10 @@ function* purify(next) {
       content += item.toString();
     }))
 
+    //concatenate css array to string
     input.css.forEach((function(item) {
       css += item.toString();
     }))
-
-    // console.log('server js' + content);
-    // console.log('server css' + css);
 
     // purify css
     var uncss = purifycss(content, css, {
@@ -99,12 +101,14 @@ function* purify(next) {
       minify: false
     });
 
+    //css removal summary
     var before = 'before purify: ' + css.length + ' chars long';
     var after = 'after purify: ' + uncss.length + ' chars long';
     var compare = 'uncss is ' + 100*Math.floor((uncss.length / css.length)*1000)/(1000) + ' % smaller';
 
     var message = before + '\n' + after + '\n' + compare;
 
+    //send message back to client
     this.body = JSON.stringify(message);
 
   } catch (err) {

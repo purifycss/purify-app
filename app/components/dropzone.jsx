@@ -1,8 +1,8 @@
-var React = require('react');
-var Dropzone = require('../../lib/dropzone');
+import React from 'react';
+import Dropzone from '../../lib/dropzone';
 
-var fluxStore = require('../stores/fluxStore.js');
-var fluxActions = require('../actions/fluxActions.js');
+import fluxStore from '../stores/fluxStore.js';
+import fluxActions from '../actions/fluxActions.js';
 
 var dropzone = React.createClass({
   getInitialState: function() {
@@ -118,7 +118,11 @@ var dropzone = React.createClass({
       css: this.state.css
     };
 
-    fluxActions.sendItem(input);
+    //check if there's any content and css
+    if((input.content.length !== 0) && (input.css.length !== 0)){
+      fluxActions.sendItem(input);
+    }
+
   },
   _onChange: function() {
     this.setState({
