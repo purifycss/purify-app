@@ -1,31 +1,25 @@
-var AppDispatcher = require('../dispatcher/AppDispatcher');
-var appConstants = require('../constants/appConstants');
-var objectAssign = require('react/lib/Object.assign');
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import appConstants from '../constants/appConstants';
+import objectAssign from 'react/lib/Object.assign';
 var EventEmitter = require('events').EventEmitter;
 
-var CHANGE_EVENT = 'change';
+const CHANGE_EVENT = 'change';
 
-var _store = {
+let _store = {
   list: ['']
 };
 
-var addItem = function(item){
+let addItem = function(item){
   _store.list.length=0;
   _store.list.push(item);
 };
 
-var addObject = function(data){
- console.log('from store',data);
-  
-  // _store.list.push('added');
-  
-};
 
-var removeItem = function(index){
+let removeItem = function(index){
   _store.list.splice(index, 1);
 }
 
-var fluxStore = objectAssign({}, EventEmitter.prototype, {
+let fluxStore = objectAssign({}, EventEmitter.prototype, {
   addChangeListener: function(cb){
     this.on(CHANGE_EVENT, cb);
   },
@@ -35,10 +29,13 @@ var fluxStore = objectAssign({}, EventEmitter.prototype, {
   getList: function(){
     return _store.list;
   },
+  getFiles: function(){
+    return _store.files;
+  },
 });
 
 AppDispatcher.register(function(payload){
-  var action = payload.action;
+  let action = payload.action;
   switch(action.actionType){
     case appConstants.SEND_DATA:
       addItem(action.data);

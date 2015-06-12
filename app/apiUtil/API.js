@@ -1,12 +1,12 @@
 'use strict';
 
-var request = require('superagent');
+import request from 'superagent';
 
 /**
  * Wrapper for calling a API
  */
-var Api = {
-  get: function(url, content) {
+const Api = {
+  get: (url, content) => {
     return new Promise(function(resolve, reject) {
       request
         .post(url)
@@ -23,4 +23,4 @@ var Api = {
   }
 };
 
-module.exports = Api;
+export default Api;
