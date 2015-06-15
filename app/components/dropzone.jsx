@@ -137,7 +137,8 @@ var dropzone = React.createClass({
 
     var textArea = {
       height: 600,
-      width: 600
+      width: 600,
+      color: "rgb(248,248,255)"
     }
 
     return ( 
