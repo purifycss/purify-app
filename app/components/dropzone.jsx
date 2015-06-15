@@ -10,11 +10,12 @@ var dropzone = React.createClass({
       files: [],
       content: [],
       css: [],
-      val: fluxStore.getList()
+      message: fluxStore.getList()
     };
   },
 
   onDrop: function(files) {
+    var self = this;
 
     var _files = this.state.files;
     var _content = this.state.content;
@@ -28,26 +29,24 @@ var dropzone = React.createClass({
         var text = reader.result;
 
         //check for file extension
-        if (file.name.indexOf('.js') !== -1) {
-          _content.push(text);
-          _files.push(file);
-        } else if(file.name.indexOf('.css') !== -1){
+        if (file.name.indexOf('.css') !== -1) {
           _css.push(text);
-          _files.push(file);
         }else{
-          alert('file is not .js or .css')
+          _content.push(text);
         }
+        
+        _files.push(file);
 
+        //update state
+        self.setState({
+          files: _files,
+          content: _content,
+          css: _css
+        })
       }
 
       reader.readAsText(file, 'utf-8');
 
-    })
-
-    this.setState({
-      files: _files,
-      content: _content,
-      css: _css
     })
 
   },
@@ -59,21 +58,16 @@ var dropzone = React.createClass({
 
     var files = this.state.files;
 
-    return ( 
+    return (
       <div>
-      <h3> Dropped files: </h3> 
-        <ul> 
-        {
-          [].map.call(files, function(f, i) {
-          return 
-            <li key = {i}> 
-              {f.name + ' : ' + f.size + ' bytes.'} 
-            </li>
-            })
-        } 
-        </ul> 
-      </div >
-      );
+        <h3>Dropped files: </h3>
+        <ul>
+          {[].map.call(files, function (f, i) {
+            return <div key={i}>{f.name + ' : ' + f.size + ' bytes.'}</div>;
+          })}
+        </ul>
+      </div>
+    );
    },
 
   componentDidMount: function() {
@@ -118,7 +112,7 @@ var dropzone = React.createClass({
       css: this.state.css
     };
 
-    //check if there's any content and css
+    //only send to server if there's content and css
     if((input.content.length !== 0) && (input.css.length !== 0)){
       fluxActions.sendItem(input);
     }
@@ -126,42 +120,46 @@ var dropzone = React.createClass({
   },
   _onChange: function() {
     this.setState({
-      list: fluxStore.getList()
+      message: fluxStore.getList()
     })
+
   },
 
   render: function() {
-    var styling = {
+    var dropArea = {
       padding: 5,
-      float: "left",
-      height:600
+      float: "left"
     };
 
     var clearfloat = {
       clear: "both"
     };
 
-    var drop = {
+    var textArea = {
       height: 600,
       width: 600
     }
 
     return ( 
       <div>
-        <div style = {styling}>
-          <Dropzone onDrop = {this.onDrop} style={drop} onClick = {this.onclick}>
-            <textarea ref = "content" placeholder = "js/html"/>
+        <div style = {dropArea}>
+          <Dropzone onDrop = {this.onDrop} size={600} onClick = {this.onclick}>
+            <textarea style = {textArea} ref = "content" placeholder = "js/html"/>
           </Dropzone>  
         </div> 
 
-      <div style = {styling}>
-        <Dropzone onDrop = {this.onDrop} style={drop} onClick = {this.onclick}>
-          <textarea ref = "css" placeholder = "css" />
+      <div style = {dropArea}>
+        <Dropzone onDrop = {this.onDrop} size={600} onClick = {this.onclick}>
+          <textarea style = {textArea} ref = "css" placeholder = "css" />
         </Dropzone>  
       </div> 
       
       <button onClick = {this.handleSendItem}> Submit </button>  
-      <p> {this.state.val} </p>  
+      
+      <p> {this.state.message[0].before} </p> 
+      <p> {this.state.message[0].after} </p> 
+      <p> {this.state.message[0].compare} </p> 
+
       {this.showFiles()} 
 
       <div style={clearfloat}></div>

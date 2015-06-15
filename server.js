@@ -16,8 +16,8 @@ var logger = require('koa-logger');
 var purifycss = require('purify-css');
 
 //database
-var config = require('./config/rethink.js');
-var r = require('rethinkdbdash')(config.rethinkdb);
+// var config = require('./config/rethink.js');
+// var r = require('rethinkdbdash')(config.rethinkdb);
 
 //initialize server
 var koa = require('koa');
@@ -102,11 +102,15 @@ function* purify(next) {
     });
 
     //css removal summary
-    var before = 'before purify: ' + css.length + ' chars long';
-    var after = 'after purify: ' + uncss.length + ' chars long';
-    var compare = 'uncss is ' + 100*Math.floor((uncss.length / css.length)*1000)/(1000) + ' % smaller';
+    var before = 'css before purify: ' + css.length + ' chars long';
+    var after = 'css after purify: ' + uncss.length + ' chars long';
+    var compare = 'purified css is ' + (100-(100*Math.floor((uncss.length / css.length)*1000)/(1000))) + ' % smaller';
 
-    var message = before + '\n' + after + '\n' + compare;
+    var message = {
+      before:before,
+      after:after,
+      compare:compare
+    }
 
     //send message back to client
     this.body = JSON.stringify(message);

@@ -13,7 +13,7 @@ const Footer = React.createClass({
               <div class="12u$"><textarea name="message" id="message" placeholder="Message" rows="4"></textarea></div>
               <div class="12u$">
                 <ul class="actions">
-                  <li><input type="submit" value="Send Message" class="special" /></li>
+                  <div><input type="submit" value="Send Message" class="special" /></div>
                 </ul>
               </div>
             </div>
