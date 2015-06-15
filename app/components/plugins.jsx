@@ -2,6 +2,9 @@ import React from 'react';
 
 const Plugins = React.createClass({
   render() {
+    let styling = {
+      color: "rgb(248,248,255)"
+    };
     return (
       <div>
         <section id="three" class="main special">
@@ -9,7 +12,7 @@ const Plugins = React.createClass({
  
           <div class="content">
             <header class="major">
-              <h2>NPM PLUGINS</h2>
+              <h2 style={styling}>NPM PLUGINS</h2>
             </header>
     
             <ul class="icons-grid">
