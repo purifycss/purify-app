@@ -7,8 +7,7 @@
     "start": "node --harmony `which gulp`",
     "style": "gulp style",
     "test": "node --harmony `which gulp` test",
-    "dev": "webpack-dev-server --devtool eval --hot --progress --colors --content-base build",
-    "postinstall":"node deploy"
+    "dev": "webpack-dev-server --devtool eval --hot --progress --colors --content-base build"
   },
   "repository": {
     "type": "git",
