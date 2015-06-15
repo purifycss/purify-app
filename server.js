@@ -1,7 +1,7 @@
 //Require hook to compile all subsequent .js files to es6
 require("./register-babel");
 
-var serve = require('koa-static');
+var common = require('koa-common');
 var router = require('koa-router')();
 
 // Used to proxy webpack bundles from webpack - dev - server to localhost
@@ -10,7 +10,6 @@ var bundle = require('./server/webpack.bundle');
 
 var co = require('co');
 var parse = require('co-body');
-var logger = require('koa-logger');
 
 //purify css module to remove unused css
 var purifycss = require('purify-css');
@@ -32,10 +31,10 @@ var env = process.env.NODE_ENV || 'dev';
 ROUTING
  */
 
-app.use(logger());
+app.use(common.logger());
 
 // serve static index.html
-app.use(serve(__dirname));
+app.use(common.static(__dirname));
 
 // mount router
 app.use(router.routes());
@@ -130,6 +129,6 @@ function* purify(next) {
 /*
 OPEN KOA CONNECTION
  */
-var server = app.listen(port, function() {
-  console.log('Listening on port %d', server.address().port);
-});
+app.listen(port);
+
+console.log('listening on port ' + port);
