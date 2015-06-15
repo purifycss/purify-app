@@ -56,6 +56,41 @@
 		box-sizing: border-box;
 	}
 
+	/* Remove underline from anchor tags */
+	a {
+    text-decoration: none !important;
+  }
+
+	/* NPM Plugin Icons */
+	#webpack {
+	background-image:url("images/webpack.png");
+	background-size:contain;
+	display:inline-block;
+	width:200px;
+	height:200px;
+	padding-right:100px;
+
+	}
+
+	#grunt{
+	background-image:url("images/grunt.png");
+	background-size:100% 100%;
+	display:inline-block;
+	width:200px;
+	height:200px;
+		
+	}
+
+	#gulp{
+	background-image:url("images/gulp.png");
+	background-size:contain;
+	display:inline-block;
+	width:200px;
+	height:200px;
+
+		
+	}
+
 	/* Containers */
 
 	.container {
