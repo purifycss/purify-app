@@ -41,15 +41,15 @@ app.use(serve(__dirname));
 app.use(router.routes());
 
 //start webpack bundling process if not in production
-if(!isProduction){
-  bundle();
+// if(!isProduction){
+//   bundle();
 
-  // route localhost:3000 request to localhost:8080 to fetch
-  // latest webpack bundle
-  router.all('/build/*', proxy({
-    url: 'http://localhost:8090/build/bundle.js'
-  }));
-}
+//   // route localhost:3000 request to localhost:8080 to fetch
+//   // latest webpack bundle
+//   router.all('/build/*', proxy({
+//     url: 'http://localhost:8090/build/bundle.js'
+//   }));
+// }
 
 /*
 RETHINKDB
