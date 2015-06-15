@@ -19,7 +19,8 @@
     "url": "https://github.com/schoenflies/purify-app/issues"
   },
   "engines": {
-    "node": "0.12.x"
+    "node": ">=0.12",
+    "iojs": ">=1.0"
   },
   "jest": {
     "rootDir": "test/client",
@@ -35,10 +36,9 @@
     "events": "^1.0.2",
     "flux": "^2.0.3",
     "koa": "^0.5.2",
-    "koa-logger": "^1.2.2",
+    "koa-common": "^1.2.0",
     "koa-proxy": "^0.2.0",
     "koa-router": "^5.0.1",
-    "koa-static": "^1.4.9",
     "node-libs-browser": "^0.5.2",
     "purify-css": "^1.0.3",
     "react": "^0.13.3",
