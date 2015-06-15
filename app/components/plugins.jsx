@@ -13,22 +13,13 @@ const Plugins = React.createClass({
             </header>
     
             <ul class="icons-grid">
-              <div>
-                <span class="icon major fa-camera-retro"></span>
-                <h3>Github</h3>
-              </div>
-              <div>
-                <span class="icon major fa-pencil"></span>
-                <h3>Weback</h3>
-              </div>
-              <div>
-                <span class="icon major fa-code"></span>
-                <h3>Grunt</h3>
-              </div>
-              <div>
-                <span class="icon major fa-coffee"></span>
-                <h3>Gulp</h3>
-              </div>
+
+                <a href='https://github.com/purifycss/purifycss-webpack-plugin'><span id="webpack"></span></a>
+   
+                <a href='https://github.com/purifycss/grunt-purifycss'><span id="grunt"></span></a>
+
+                <a href='https://github.com/purifycss/gulp-purifycss'><span id="gulp"></span></a>
+         
             </ul>
           </div>
    

@@ -1,7 +1,7 @@
 {
   "name": "purify-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "purify content in your browser",
   "main": "index.js",
   "scripts": {
     "start": "node --harmony `which gulp`",
@@ -13,7 +13,7 @@
     "type": "git",
     "url": "https://github.com/schoenflies/purify-app.git"
   },
-  "author": "",
+  "author": "Kenny Tran, Matthew Rouke, Phoebe Li",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/schoenflies/purify-app/issues"

@@ -50,4 +50,4 @@ AppDispatcher.register(function(payload){
   }
 });
 
-module.exports = fluxStore;
+export default fluxStore;
