@@ -3,8 +3,6 @@
 import React from 'react';
 import Router, { Route, Link, DefaultRoute, RouteHandler } from "react-router";
 
-import Landing from './pages/landing.jsx';
-import DashBoard from './pages/dashboard.jsx';
 import Dropzone from './components/dropzone.jsx';
 import Motivation from './components/motivation.jsx';
 import Title from './components/title.jsx';
@@ -31,8 +29,6 @@ export default App;
 // setup routes
 const routes = (
   <Route name="app" path="/" handler={App}>
-    <Route name="landing" handler={Landing} />
-    <Route name="dashboard" handler={DashBoard} />
     <Route name="input" handler={Dropzone} />
   </Route>
 );
