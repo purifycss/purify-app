@@ -145,7 +145,7 @@ var dropzone = React.createClass({
 
     var fileData = {
       filename: 'purify.css',
-      contents: this.state.message[0].purify,
+      contents: this.state.message[0].purify || '',
       mime: 'text/plain',
     };
 

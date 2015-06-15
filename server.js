@@ -23,7 +23,9 @@ var purifycss = require('purify-css');
 var koa = require('koa');
 var app = module.exports = koa();
 
-var port = process.env.PORT || 3000;
+var isProduction = process.env.NODE_ENV === 'production';
+var port = isProduction ? 8080 : 3000;
+// var port = process.env.PORT || 3000;
 var env = process.env.NODE_ENV || 'dev';
 
 /*
@@ -38,14 +40,16 @@ app.use(serve(__dirname));
 // mount router
 app.use(router.routes());
 
-//start webpack bundling process
-bundle();
+//start webpack bundling process if not in production
+if(!isProduction){
+  bundle();
 
-// route localhost:3000 request to localhost:8080 to fetch
-// latest webpack bundle
-router.all('/build/*', proxy({
-  url: 'http://localhost:8090/build/bundle.js'
-}));
+  // route localhost:3000 request to localhost:8080 to fetch
+  // latest webpack bundle
+  router.all('/build/*', proxy({
+    url: 'http://localhost:8090/build/bundle.js'
+  }));
+}
 
 /*
 RETHINKDB
