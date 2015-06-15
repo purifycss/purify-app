@@ -109,7 +109,8 @@ function* purify(next) {
     var message = {
       before:before,
       after:after,
-      compare:compare
+      compare:compare,
+      purify: uncss
     }
 
     //send message back to client

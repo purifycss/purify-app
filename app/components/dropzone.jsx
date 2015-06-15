@@ -4,6 +4,8 @@ import Dropzone from '../../lib/dropzone';
 import fluxStore from '../stores/fluxStore.js';
 import fluxActions from '../actions/fluxActions.js';
 
+import DownloadButton from '../../lib/downloadbutton/index.js';
+
 var dropzone = React.createClass({
   getInitialState: function() {
     return {
@@ -139,7 +141,18 @@ var dropzone = React.createClass({
       height: 600,
       width: 600,
       color: "rgb(248,248,255)"
-    }
+    };
+
+    var fileData = {
+      filename: 'purify.css',
+      contents: this.state.message[0].purify,
+      mime: 'text/plain',
+    };
+
+    var title = <span>
+      Download File
+      <i className="mdi-file-file-download right"/>
+    </span>;
 
     return ( 
       <div>
@@ -155,7 +168,12 @@ var dropzone = React.createClass({
         </Dropzone>  
       </div> 
       
-      <button onClick = {this.handleSendItem}> Submit </button>  
+      <button onClick = {this.handleSendItem}> Purify </button>  
+      
+      <DownloadButton
+        className='waves-effect waves-light btn' 
+        downloadTitle={title}
+        fileData={fileData}/>
       
       <p> {this.state.message[0].before} </p> 
       <p> {this.state.message[0].after} </p> 
