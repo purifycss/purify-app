@@ -24,8 +24,8 @@ var koa = require('koa');
 var app = module.exports = koa();
 
 var isProduction = process.env.NODE_ENV === 'production';
-var port = isProduction ? 8080 : 3000;
-// var port = process.env.PORT || 3000;
+// var port = isProduction ? 8080 : 3000;
+var port = process.env.PORT || 3000;
 var env = process.env.NODE_ENV || 'dev';
 
 /*
